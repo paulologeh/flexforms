@@ -7,6 +7,10 @@ import './App.css';
 
 class App extends Component {
 
+  componentDidMount() {
+    console.clear()
+  }
+
   render() {
     return (
       <div className='App'>
