@@ -25,6 +25,7 @@ const Creator = () => {
         setSelectedTool(newTool)
     }
 
+
     return (
         <StoreProvider>
             <div>
@@ -44,7 +45,7 @@ const Creator = () => {
                             </Grid.Column>
                             <Grid.Column stretched style={canvasStyle}>
                                 <Canvas
-                                    currentTool = {selectedTool}
+                                    currentTool={selectedTool}
                                 />
                             </Grid.Column>
                         </Grid.Row>

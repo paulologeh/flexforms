@@ -1,5 +1,5 @@
 import React from 'react'
-import {Segment, Container, Header, Input, Button} from 'semantic-ui-react'
+import {Segment, Container, Input, Button} from 'semantic-ui-react'
 
 
 const ToolPanel = () => {
@@ -10,7 +10,6 @@ const ToolPanel = () => {
             inverted
         >
             <Container>
-                <Header as="h5" inverted>Tool Panel</Header>
                 <label>ID:</label>
                 <br/>
                 <label>Label</label>

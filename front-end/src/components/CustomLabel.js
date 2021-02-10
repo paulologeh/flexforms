@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export const CustomLabel = () => {
 
-    const [state, setState] = useState('Label')
+    const [state ] = useState('Static Label')
 
     return (
         <label> {state} </label>

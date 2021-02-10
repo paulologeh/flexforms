@@ -1,12 +1,10 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react'
 import { Rnd } from 'react-rnd'
-// import {getHeight, getWidth} from 'utils/getDocumentProps'
-// import Draggable from 'components/Draggable'
+import placeholderImage from 'assets/toolimage.png'
 
 
 function getDefaultDimensions(toolName) {
-    
     return { minHeight: 10, minWidth: 100 }
 }
 
@@ -15,12 +13,33 @@ export const CreateTool = (tool) => {
     let toolProps = {}
     toolProps.style = {}
     // Common Props
-    let key = new Date().getTime()
-    // let startPos = { x: getWidth() * 0.3, y: getHeight() * 0.1 }
+    let key = `Tool_${new Date().getTime()}`
+    toolProps.key = key
 
     // Custom Props
     if (tool.type) {
         toolProps.type = tool.type      
+    }
+
+    if (tool.type && tool.type === 'file') {
+        toolProps.disabled = true
+    }
+
+    if (tool.tool === 'Submit') {
+        let newTool = React.createElement(tool.component, toolProps, 'Submit')
+        return (
+            <Rnd
+                key={key}
+                bound='window'
+            >
+                {newTool}
+            </Rnd>
+        )
+    }
+
+    if (tool.tool === 'Picture') {
+        toolProps.src = placeholderImage
+        toolProps.draggable=false
     }
 
     if (tool.tool !== 'TextArea' || tool.tool !== 'Panel' || tool.tool !== 'StaticLabel') {
@@ -41,15 +60,27 @@ export const CreateTool = (tool) => {
 
     if (tool.tool === 'Panel') {
         toolProps.placeholder = true
-        // toolProps.style.flexGrow = 1
-        // toolProps.style.height = '30%'
-        let newTool = React.createElement(tool.component, toolProps, null)
+        const panelStyle = {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: "solid 1px #ddd",
+            background: "#f0f0f0",
+            // zIndex: '0'
+        };
+
         return (
             <Rnd
                 key={key}
                 bound='window'
+                style={panelStyle}
+                default={{
+                    x: 0,
+                    y: 0,
+                    width: 320,
+                    height: 200
+                }}
             >
-            {newTool}
             </Rnd>
         )
     }

@@ -1,10 +1,10 @@
 import {isObjInvalid} from 'utils/invalidObject'
 
 
-export const handleToolClick = (localId, localStore, localUpdateStore) => {
-    let tempStore = JSON.parse(JSON.stringify(localStore)) // deep copy
+export const updateSelected = (localId, store, updateStore) => {
+    let tempStore = JSON.parse(JSON.stringify(store)) // deep copy
     tempStore.selectedTool = localId
-    localUpdateStore(tempStore)
+    updateStore(tempStore)
 }
 
 export const handleToolProps = (localId, localStore) => {
