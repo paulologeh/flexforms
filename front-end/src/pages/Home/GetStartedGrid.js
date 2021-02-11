@@ -39,7 +39,7 @@ const GetStartedGrid = () => {
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column>
-                    <Header as='h2' textAlign='center'>View My Form's Responses</Header>
+                    <Header as='h2' textAlign='center'>Check My Form's Responses</Header>
                     <Image
                         name='viewresponses'
                         src={viewresponses}
@@ -51,7 +51,7 @@ const GetStartedGrid = () => {
                     />
                 </Grid.Column>
                 <Grid.Column>
-                    <Header as='h2' textAlign='center'>Discontinue A Form</Header>
+                    <Header as='h2' textAlign='center'>Cancel My Form</Header>
                     <Image
                         name='discontinue'
                         src={discontinue}
