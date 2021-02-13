@@ -25,7 +25,12 @@ export const CreateTool = (tool) => {
         toolProps.disabled = true
     }
 
-    if (tool.tool === 'Submit') {
+    if (tool.value === 'Heading')
+    {
+        toolProps.content = 'Header'    
+    }
+
+    if (tool.value === 'Submit') {
         let newTool = React.createElement(tool.component, toolProps, 'Submit')
         return (
             <Rnd
@@ -37,16 +42,17 @@ export const CreateTool = (tool) => {
         )
     }
 
-    if (tool.tool === 'Picture') {
+    if (tool.value === 'Picture') {
         toolProps.src = placeholderImage
-        toolProps.draggable=false
+        toolProps.draggable = false
+        toolProps.size = 'small'
     }
 
-    if (tool.tool !== 'TextArea' || tool.tool !== 'Panel' || tool.tool !== 'StaticLabel') {
+    if (tool.value !== 'TextArea' || tool.value !== 'Panel' || tool.value !== 'StaticLabel') {
         toolProps.fluid = true
     }
 
-    if (tool.tool === 'TextArea') {
+    if (tool.value === 'TextArea') {
         let newTool = React.createElement(tool.component, toolProps, null)
         return (
             <Rnd
@@ -58,7 +64,7 @@ export const CreateTool = (tool) => {
         )
     }
 
-    if (tool.tool === 'Panel') {
+    if (tool.value === 'Panel') {
         toolProps.placeholder = true
         const panelStyle = {
             display: "flex",
@@ -87,7 +93,7 @@ export const CreateTool = (tool) => {
 
     let newTool = React.createElement(tool.component, toolProps, null)
     // default dimensions
-    let rndProps = getDefaultDimensions(tool.tool)
+    let rndProps = getDefaultDimensions(tool.value)
     rndProps.bound = 'window'
     rndProps.key = key
     let item = React.createElement(Rnd, rndProps, newTool)

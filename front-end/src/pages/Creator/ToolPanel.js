@@ -8,6 +8,8 @@ const ToolPanel = () => {
         <Segment
             color='blue'
             inverted
+            padded
+            
         >
             <Container>
                 <label>ID:</label>

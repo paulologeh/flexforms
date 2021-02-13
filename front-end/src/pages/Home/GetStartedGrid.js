@@ -15,7 +15,7 @@ const GetStartedGrid = () => {
         <Grid columns={'equal'} container>
             <Grid.Row>
                 <Grid.Column>
-                    <Header as='h2' textAlign='center'>Create A New Form</Header>
+                    <Header as='h2' textAlign='center'>Create Form</Header>
                     <Image
                         src={createform}
                         fluid
@@ -26,7 +26,7 @@ const GetStartedGrid = () => {
                     />
                 </Grid.Column>
                 <Grid.Column>
-                    <Header as='h2' textAlign='center'>Fill Out A Form</Header>
+                    <Header as='h2' textAlign='center'>Fill Form</Header>
                     <Image
                         src={respondtoform}
                         fluid
@@ -39,7 +39,7 @@ const GetStartedGrid = () => {
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column>
-                    <Header as='h2' textAlign='center'>Check My Form's Responses</Header>
+                    <Header as='h2' textAlign='center'>Check Responses</Header>
                     <Image
                         name='viewresponses'
                         src={viewresponses}
@@ -51,7 +51,7 @@ const GetStartedGrid = () => {
                     />
                 </Grid.Column>
                 <Grid.Column>
-                    <Header as='h2' textAlign='center'>Cancel My Form</Header>
+                    <Header as='h2' textAlign='center'>Cancel Form</Header>
                     <Image
                         name='discontinue'
                         src={discontinue}
