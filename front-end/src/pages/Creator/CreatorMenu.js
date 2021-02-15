@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Menu, Image, Dropdown, Container } from 'semantic-ui-react'
+import { Menu, Image, Dropdown, Container, Icon } from 'semantic-ui-react'
 import logo from 'assets/FlexFormsLogoNoText.png'
 
 const CreatorMenu = () => {
@@ -27,22 +27,23 @@ const CreatorMenu = () => {
                         <Dropdown.Item icon='refresh' text='Clear Canvas' onClick={handleClick}/>
                     </Dropdown.Menu>
                 </Dropdown>
-                <Menu.Item as='a' active={active === 'Templates'} onClick={handleClick}>Templates</Menu.Item>
+                {/* <Menu.Item as='a' active={active === 'Templates'} onClick={handleClick}>Templates</Menu.Item> */}
                 <Menu.Item as='a' active={active === 'Preview'} onClick={handleClick}> Preview </Menu.Item>
+                <Menu.Item as='a' active={active === 'Publish'} onClick={handleClick}> Publish Form </Menu.Item>
                 <Dropdown item simple text='Settings'>
                     <Dropdown.Menu>
-                        <Dropdown.Item icon='square full' text='Background' onClick={handleClick}/>
-                        <Dropdown.Item icon='amilia' text='Form Title' onClick={handleClick} />
-                        <Dropdown.Item disabled  icon='plus' text='To Front' onClick={handleClick} />
-                        <Dropdown.Item disabled icon='minus' text='To Back' onClick={handleClick} />
+                        <Dropdown.Item icon='square full' text='Background Color' onClick={handleClick}/>
+                        {/* <Dropdown.Item icon='amilia' text='Form Title' onClick={handleClick} /> */}
+                        {/* <Dropdown.Item disabled  icon='plus' text='To Front' onClick={handleClick} /> */}
+                        {/* <Dropdown.Item disabled icon='minus' text='To Back' onClick={handleClick} />
                         <Dropdown.Item disabled icon='resize vertical' text='Resize Vertical' onClick={handleClick}/>
                         <Dropdown.Item disabled icon='resize horizontal' text='Resize Horizontal' onClick={handleClick} />
                         <Dropdown.Item disabled icon='wpforms' text='Add Page' onClick={handleClick} />
                         <Dropdown.Item disabled icon='delete' text='Remove Page' onClick={handleClick} />
-                        <Dropdown.Item disabled icon='align justify' text='Auto Align' onClick={handleClick} />
+                        <Dropdown.Item disabled icon='align justify' text='Auto Align' onClick={handleClick} /> */}
                     </Dropdown.Menu>
                 </Dropdown>
-                <Menu.Item icon='help' active={active === 'help'} onClick={handleClick}/>
+                <Menu.Item active={active === 'help'} onClick={handleClick}>Help<Icon name='help'></Icon></Menu.Item>
             </Container>
         </Menu>
     )

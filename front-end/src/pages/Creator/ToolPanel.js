@@ -1,25 +1,24 @@
 import React from 'react'
-import {Segment, Container, Input, Button} from 'semantic-ui-react'
+import { Segment, Container, Header } from 'semantic-ui-react'
 
 
-const ToolPanel = () => {
 
+const ToolPanel = (props) => {
+
+    // use effect
+    // check selected tool in store
+    // render menu based on prop type
     return (
         <Segment
             color='blue'
             inverted
-            padded
-            
+            padded 
         >
-            <Container>
-                <label>ID:</label>
-                <br/>
-                <label>Label</label>
-                <Input fluid type="text" size="small"  />
-                <label>Tooltip</label>
-                <Input fluid type="text" size="small" />
-                <br/>
-                <Button  negative size='tiny'>Delete</Button>
+            <Header as='h4'>Tool Panel</Header>
+            <Container fluid>
+                <label>{props.selectedTool} </label>
+                <br/><br/>
+                {props.children}
             </Container>
         </Segment>
     )

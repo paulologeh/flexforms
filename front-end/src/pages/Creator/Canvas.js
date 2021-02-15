@@ -1,32 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Segment } from 'semantic-ui-react'
-import { isObjInvalid } from "utils/invalidObject"
+import 'App.css'
 
 
 const Canvas = (props) => {
 
-    const [canvasBody, setCanvasBody] = useState([])
-
-    const addToCanvas = () => {
-        if (isObjInvalid(props.currentTool)) {
-            return
-        }
-        let newCanvasBody = [...canvasBody]
-        newCanvasBody.push(props.currentTool)
-        setCanvasBody(newCanvasBody)
-    }
-
-    useEffect(
-        () => {
-            addToCanvas();
-        }, [props.currentTool]
-    )
-
     return (
-            <Segment padded>
-                <div id='current-canvas'>
-                    {canvasBody}
+            <Segment className='canvas' padded>
+                <div >
+                {props.canvasBody}
                 </div>
             </Segment>
     )
