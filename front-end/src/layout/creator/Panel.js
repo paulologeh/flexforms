@@ -27,7 +27,15 @@ const Panel = (props) => {
         {
          props.deleteFromStore(props.id, createdTools, updateCreated)   
         }
-    } 
+    }
+
+    const handleDrag = (event, d) => {
+        props.handleDrag(props.id, d, createdTools, updateCreated)
+    }
+
+    const handleResize = (event, direction, ref, delta, position) => {
+        props.handleResize(props.id, ref,createdTools, updateCreated)
+    }
 
     return (
         <Rnd
@@ -40,6 +48,8 @@ const Panel = (props) => {
             onClick={handleClick}
             onKeyDown={handleKeys}
             tabIndex="1"
+            onDragStop={handleDrag}
+            onResizeStop={handleResize}
         >
         </Rnd>
     )

@@ -17,7 +17,15 @@ const Number = (props) => {
         {
          props.deleteFromStore(props.id, createdTools, updateCreated)   
         }
-    } 
+    }
+
+    const handleDrag = (event, d) => {
+        props.handleDrag(props.id, d, createdTools, updateCreated)
+    }
+
+    const handleResize = (event, direction, ref, delta, position) => {
+        props.handleResize(props.id, ref,createdTools, updateCreated)
+    }
 
     return (
         <Rnd
@@ -25,6 +33,8 @@ const Number = (props) => {
             minWidth={props.minWidth}
             bounds={props.bounds}
             enableResizing={props.enableResizing}
+            onDragStop={handleDrag}
+            onResize={handleResize}
         >
             <Input
                 type='number'

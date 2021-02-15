@@ -62,6 +62,14 @@ const Heading = (props) => {
         }, [state]
     )
 
+    const handleDrag = (event, d) => {
+        props.handleDrag(props.id, d, createdTools, updateCreated)
+    }
+
+    const handleResize = (event, direction, ref, delta, position) => {
+        props.handleResize(props.id, ref,createdTools, updateCreated)
+    }
+
     return (
         <Rnd
             minHeight={props.minHeight}
@@ -70,6 +78,8 @@ const Heading = (props) => {
             enableResizing={props.enableResizing}
             onClick={handleClick}
             onKeyDown={handleKeys}
+            onDragStop={handleDrag}
+            onResizeStop={handleResize}
         >
             <EditableElement onChange={handleChange}>
                 <h2>Heading</h2>

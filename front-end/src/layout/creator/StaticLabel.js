@@ -47,6 +47,14 @@ const CustomLabel = (props) => {
 
     const handleChange = (value) => setState(value)
 
+    const handleDrag = (event, d) => {
+        props.handleDrag(props.id, d, createdTools, updateCreated)
+    }
+
+    const handleResize = (event, direction, ref, delta, position) => {
+        props.handleResize(props.id, ref,createdTools, updateCreated)
+    }
+
     useEffect(
         () => {
             let newContext = JSON.parse(JSON.stringify(createdTools))
@@ -70,6 +78,8 @@ const CustomLabel = (props) => {
             enableResizing={props.enableResizing}
             onClick={handleClick}
             onKeyDown={handleKeys}
+            onDragStop={handleDrag}
+            onResizeStop={handleResize}
         >
             <EditableElement onChange={handleChange}>
                 <label>Label</label>

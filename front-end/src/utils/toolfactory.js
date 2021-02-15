@@ -16,6 +16,34 @@ const onToolDelete = (id, localStore, localUpdateStore) => {
     localUpdateStore(tempStore)
 }
 
+const onToolDrag = (id, d, localStore, localUpdateStore) => {
+    let tempStore = JSON.parse(JSON.stringify(localStore)); // deep copy
+    for (let i in tempStore.tools)
+    {
+        if (tempStore.tools[i].key === id)
+        {
+            tempStore.tools[i].x = d.x
+            tempStore.tools[i].y = d.y
+            localUpdateStore(tempStore)
+            break
+        }
+    }
+}
+
+const onToolResize = (id, ref, localStore, localUpdateStore) => {
+    let tempStore = JSON.parse(JSON.stringify(localStore)); // deep copy
+    for (let i in tempStore.tools)
+    {
+        if (tempStore.tools[i].key === id)
+        {
+            tempStore.tools[i].width = ref.style.width
+            tempStore.tools[i].height = ref.style.height
+            localUpdateStore(tempStore)
+            break
+        }
+    }
+}
+
 const noResize = ['Checkbox', 'Radio', 'StaticLabel', 'Heading']
 const horizontalResize = ['Time', 'Date', 'Number', 'Text', 'TextArea']
 
@@ -40,6 +68,8 @@ export function createFormTool(tool)
         minHeight: 10,
         minWidth: 100,
         handleToolClick: onToolClick,
-        deleteFromStore: onToolDelete
+        deleteFromStore: onToolDelete,
+        handleDrag: onToolDrag,
+        handleResize: onToolResize
     })
 }

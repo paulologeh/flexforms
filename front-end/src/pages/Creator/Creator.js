@@ -3,7 +3,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import CreatorMenu from 'pages/Creator/CreatorMenu'
 import { Grid } from 'semantic-ui-react'
 import Tools from 'pages/Creator/Tools'
-import ToolPanel from 'pages/Creator/ToolPanel'
+// import ToolPanel from 'pages/Creator/ToolPanel'
 import Canvas from 'pages/Creator/Canvas'
 import { isObjInvalid, arrayHasKey } from "utils/index"
 import { CreatorsContext } from 'context/contextCreator'
@@ -22,8 +22,8 @@ const toolSchema = {
     key: '',
     toolName: '',
     toolValue: null,
-    xPosition: 0,
-    yPosition: 0,
+    x: 0,
+    y: 0,
     height: 10,
     width: 100
 }
@@ -43,6 +43,14 @@ const Creator = () => {
         addToCanvas(component) // add to canvas
         addToCreatedTools(component) // add to stor
 
+    }
+
+    const callbackActive = (active) => {
+        // console.log(active)
+        if (active === 'Clear Canvas' && canvasBody.length !== 0)
+        {
+            setCanvasBody([])    
+        }
     }
 
     const addToCanvas = (tool) => {
@@ -74,23 +82,25 @@ const Creator = () => {
                 setCanvasBody(newCanvasBody)
             },[createdTools]
     )
+    console.log(createdTools)
 
     return (
             <div style={rootStyle}>
                 <div style={{marginTop: '50px'}}>
-                    <CreatorMenu/>
+                    <CreatorMenu callbackActive={callbackActive}/>
                 </div>
                 <Grid centered padded columns={2} >
                     <Grid.Row>
                         <Grid.Column style={toolsStyle} >
                             <Grid.Row stretched>
-                                <Tools
-                                    callbackComponent={callbackChildComponent}
+                                <Tools callbackComponent={callbackChildComponent}
                                 />
                             </Grid.Row>
                             <br/>
                             <Grid.Row stretched>
-                                <ToolPanel selectedTool={createdTools.selectedTool}/>
+                            {/* <ToolPanel
+                                selectedTool={createdTools.selectedTool}
+                            /> */}
                             </Grid.Row>
                         </Grid.Column>
                         <Grid.Column  stretched style={canvasStyle}>
