@@ -3,10 +3,15 @@ import { Input } from 'semantic-ui-react'
 
 const Time = () => {
 
-    const [state, setState] = useState(null)
+    const [state, setState] = useState('')
 
     return (
-        <Input type='time' value={state} onChange={(e) => setState(e.target.value)}/>
+        <Input
+            type='time'
+            value={state}
+            fluid
+            onChange={(e) => setState(e.target.value)}
+        />
     )
 }
 

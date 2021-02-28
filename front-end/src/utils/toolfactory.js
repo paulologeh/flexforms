@@ -22,6 +22,8 @@ const onToolDrag = (id, d, localStore, localUpdateStore) => {
     {
         if (tempStore.tools[i].key === id)
         {
+            tempStore.tools[i].xPercentage = (d.x + 22) / (d.node.offsetParent.offsetWidth - tempStore.tools[i].width)
+            tempStore.tools[i].yPercentage = (d.y + 22) / (d.node.offsetParent.offsetHeight - tempStore.tools[i].height)
             tempStore.tools[i].x = d.x
             tempStore.tools[i].y = d.y
             localUpdateStore(tempStore)
@@ -36,8 +38,8 @@ const onToolResize = (id, ref, localStore, localUpdateStore) => {
     {
         if (tempStore.tools[i].key === id)
         {
-            tempStore.tools[i].width = ref.style.width
-            tempStore.tools[i].height = ref.style.height
+            tempStore.tools[i].width = ref.style.width === "auto" ? 100 : Number(ref.style.width.replace('px',''))
+            tempStore.tools[i].height = ref.style.height === "auto" ? 10 : Number(ref.style.height.replace('px',''))
             localUpdateStore(tempStore)
             break
         }
@@ -59,17 +61,36 @@ export function createFormTool(tool)
         enableResizing = { top:false, right:true, bottom:false, left:true, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }
     }
     let id = `Tool_${new Date().getTime()}`
-    return React.createElement(tool.component, {
-        key: id,
-        id: id,
+
+    let props = {
+        key: tool.key ? tool.key : id,
+        id: tool.key ? tool.key : id,
         enableResizing: enableResizing,
         toolname: tool.value,
+        text: tool.toolValue ? tool.toolValue : null,
         bounds: '.canvas',
-        minHeight: 10,
-        minWidth: 100,
+        minHeight: tool.value === 'Panel' ? '100px' : '10px' ,
+        minWidth: tool.value === 'Panel' ? '180px' : '100px',
         handleToolClick: onToolClick,
         deleteFromStore: onToolDelete,
         handleDrag: onToolDrag,
         handleResize: onToolResize
-    })
+    }
+
+    if (tool.value === 'Checkbox' || tool.value === 'Radio' || tool.value === 'StaticLabel')
+    {
+        delete props.minHeight
+        delete props.minWidth
+        if (tool.value !== 'StaticLabel')
+        {
+            props.maxWidth = '15px'
+        }
+    }
+
+    if ('toolObj' in tool && 'default' in tool.toolObj)
+    {
+        props.default = {x: tool.toolObj.x, y: tool.toolObj.y}   
+    }
+
+    return React.createElement(tool.component, props )
 }

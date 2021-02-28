@@ -7,22 +7,18 @@ const panelStyle = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    border: "solid 1px #ddd",
-    // background: "#f0f0f0",
+    border: "solid 1px #ddd"
 };
 
 const Panel = (props) => {
 
     const [createdTools, updateCreated] = useContext(CreatorsContext)
     const handleClick = (event) => {
-        // onclick update the selected tool in the store with this
-        // console.log(event)
         let storeProps = {id: props.id, toolName: props.toolname}
         props.handleToolClick(storeProps, createdTools, updateCreated)
     }
 
     const handleKeys = (event) => {
-        console.log(event)
         if (event.keyCode === 8 || event.keyCode === 46)
         {
          props.deleteFromStore(props.id, createdTools, updateCreated)   
@@ -44,7 +40,7 @@ const Panel = (props) => {
             bounds={props.bounds}
             enableResizing={props.enableResizing}
             style={panelStyle}
-            default={{ x: 0, y: 0, width: 320, height: 200 }}
+            default={{ x: props.default ? props.default.x : 0, y: props.default ? props.default.x : 0, width: 320, height: 200 }}
             onClick={handleClick}
             onKeyDown={handleKeys}
             tabIndex="1"

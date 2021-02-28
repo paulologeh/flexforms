@@ -35,6 +35,7 @@ const Number = (props) => {
             enableResizing={props.enableResizing}
             onDragStop={handleDrag}
             onResize={handleResize}
+            default={props.default}
         >
             <Input
                 type='number'
@@ -42,7 +43,6 @@ const Number = (props) => {
                 onKeyDown={handleKeys}
                 fluid
                 readOnly
-                value={0}
             />
         </Rnd>
     )

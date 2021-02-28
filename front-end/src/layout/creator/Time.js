@@ -15,7 +15,7 @@ const Time = (props) => {
     const handleKeys = (event) => {
         if (event.keyCode === 8 || event.keyCode === 46)
         {
-         props.deleteFromStore(props.id, createdTools, updateCreated)   
+            props.deleteFromStore(props.id, createdTools, updateCreated)   
         }
     }
 
@@ -26,6 +26,7 @@ const Time = (props) => {
     const handleResize = (event, direction, ref, delta, position) => {
         props.handleResize(props.id, ref,createdTools, updateCreated)
     }
+
 
     return (
         <Rnd

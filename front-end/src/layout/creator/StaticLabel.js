@@ -72,17 +72,18 @@ const CustomLabel = (props) => {
 
     return (
         <Rnd
-            minHeight={props.minHeight}
-            minWidth={props.minWidth}
+            // minHeight={props.minHeight}
+            // minWidth={props.minWidth}
             bounds={props.bounds}
             enableResizing={props.enableResizing}
             onClick={handleClick}
             onKeyDown={handleKeys}
             onDragStop={handleDrag}
             onResizeStop={handleResize}
+            default={props.default}
         >
             <EditableElement onChange={handleChange}>
-                <label>Label</label>
+                <label>{props.text}</label>
             </EditableElement>
         </Rnd>
     )

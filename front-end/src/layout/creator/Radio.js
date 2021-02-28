@@ -29,8 +29,8 @@ const Radio = (props) => {
 
     return (
         <Rnd
-            minHeight={props.minHeight}
-            minWidth={props.minWidth}
+            // minHeight={props.minHeight}
+            maxWidth={props.maxWidth}
             bounds={props.bounds}
             enableResizing={props.enableResizing}
             onDragStop={handleDrag}

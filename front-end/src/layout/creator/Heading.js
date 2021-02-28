@@ -80,9 +80,10 @@ const Heading = (props) => {
             onKeyDown={handleKeys}
             onDragStop={handleDrag}
             onResizeStop={handleResize}
+            default={props.default}
         >
             <EditableElement onChange={handleChange}>
-                <h2>Heading</h2>
+                <h2>{props.text}</h2>
             </EditableElement>
         </Rnd>
     )

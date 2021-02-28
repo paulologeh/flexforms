@@ -43,6 +43,7 @@ const Dates = (props) => {
             enableResizing={props.enableResizing}
             onDragStop={handleDrag}
             onResizeStop={handleResize}
+            default={props.default}
         >
             <Input
                 type='date'
@@ -50,7 +51,6 @@ const Dates = (props) => {
                 onKeyDown={handleKeys}
                 fluid
                 readOnly
-                // value={getTodayString()}
             />
         </Rnd>
     )

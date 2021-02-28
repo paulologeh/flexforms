@@ -71,8 +71,21 @@ function getTool(value)
         {
             return allTools[i]
         }
+        else if (allTools[i].value === value)
+        {
+            return allTools[i]
+        }
     }
     return null
+}
+
+export function createComponent(toolName, toolObj) {
+    // console.log(toolObj)
+    let tool = getTool(toolName)
+    tool.key = toolObj.key
+    tool.toolValue = toolObj.toolValue
+    tool.toolObj = { ...toolObj }
+    return createFormTool(tool)
 }
 
 const Tools = (props) => {
@@ -84,7 +97,11 @@ const Tools = (props) => {
     }
 
     return (
-        <Segment color='blue' inverted padded>
+        <Segment
+            color='blue'
+            inverted
+            padded
+        >
             <Header as='h4'>Tools</Header>
             <Grid columns={2}>
                 <Grid.Row>

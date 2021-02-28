@@ -22,18 +22,20 @@ const Checkbox = (props) => {
     const handleDrag = (event, d) => {
         props.handleDrag(props.id, d, createdTools, updateCreated)
     }
+    
     const handleResize = (event, direction, ref, delta, position) => {
         props.handleResize(props.id, ref,createdTools, updateCreated)
     }
 
     return (
         <Rnd
-            minHeight={props.minHeight}
-            minWidth={props.minWidth}
+            // maxHeight={props.maxHeight}
+            maxWidth={props.maxWidth}
             bounds={props.bounds}
             enableResizing={props.enableResizing}
             onDragStop={handleDrag}
             onResizeStop={handleResize}
+            default={props.default}
         >
             <CheckBox
                 onClick={handleClick}
