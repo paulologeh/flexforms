@@ -8,9 +8,11 @@ import Checkbox from './Checkbox'
 import Radio from './Radio'
 import CustomLabel from './StaticLabel';
 import Heading from './Heading'
+import Container from './Container'
 
 export {
     Heading,
+    Container,
     CustomLabel,
     Radio,
     Time,

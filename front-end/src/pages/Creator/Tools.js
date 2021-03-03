@@ -1,99 +1,44 @@
 import { Button, Grid, List, Header, Popup, Segment } from 'semantic-ui-react'
-import { createFormTool } from "utils/toolfactory";
-import {Checkbox, Radio, CustomLabel, Heading, Time, Number, Text, Dates, Panel, TextArea} from 'layout/creator/index'
-
 
 const allTools = [
     {
-        icon: 'square outline', value: 'Panel', text: 'Panel', component: Panel,
-        help: 'Creates a bordered area'
+        icon: 'square outline', value: 'Panel', text: 'Panel'
     },
     {
-        icon: 'calculator', value: 'Number', text: 'Number', component: Number,
-        help: 'Create a numeric input'
+        icon: 'calculator', value: 'Number', text: 'Number'
     },
     {
-        icon: 'text height', value: 'TextInput', text: 'Text', component: Text,
-        help: 'Creates a text input'
+        icon: 'text height', value: 'TextInput', text: 'Text'
     },
     {
-        icon: 'check square outline', value: 'Checkbox', text: 'Checkbox', component: Checkbox,
-        help: 'Creates a checkbox'
+        icon: 'check square outline', value: 'Checkbox', text: 'Checkbox'
     },
     {
-        icon: 'dot circle outline', value: 'Radio', text: 'Radio', component: Radio,
-        help: 'Creates a radio'
+        icon: 'dot circle outline', value: 'Radio', text: 'Radio'
     },
     {
-        icon: 'text width', value: 'TextArea', text: 'Text Area', component: TextArea,
-        help: 'Creates a text area'
+        icon: 'text width', value: 'TextArea', text: 'Text Area'
     },
     {
-        icon: 'calendar outline', value: 'Dates', text: 'Dates', component: Dates,
-        help: 'Creates a date'
+        icon: 'calendar outline', value: 'Dates', text: 'Dates'
     },
     {
-        icon: 'time', value: 'Time', text: 'Time', component: Time,
-        help: 'Create a time'
+        icon: 'time', value: 'Time', text: 'Time'
     },
     {
-        icon: 'text cursor', value: 'StaticLabel', text: 'Static Label', component: CustomLabel,
-        help: 'Creates a static label'
+        icon: 'text cursor', value: 'StaticLabel', text: 'Static Label'
     },
     {
-        icon: 'heading', value: 'Heading', text: 'Heading', component: Heading,
-        help: 'Creates a header'
+        icon: 'heading', value: 'Heading', text: 'Heading'
     }
-    // TO DO
-    // {
-    //     icon: 'calendar alternate outline', value: 'DateTime', text: 'Date Time', component: Input, type: 'datetime-local',
-    //     help: 'Creates a date time'
-    // },
-    // {
-    //     icon: 'file outline', value: 'Attachment', text: 'Attachment', component: Input, type: 'file',
-    //     help: 'Creates an attachment'
-    // },
-    // {
-    //     icon: 'picture', value: 'Picture', text: 'Picture', component: Image,
-    //     help: 'Creates an image'
-    // },
-    // {
-    //     icon: 'dropdown', value: 'DropdownMenu', text: 'Dropdown', component: Dropdown,
-    //     help: 'Creates a dropdown with a list of options to select from'
-    // },
 ]
 
-function getTool(value)
-{
-    for (let i in allTools)
-    {
-        if (allTools[i].icon === value)
-        {
-            return allTools[i]
-        }
-        else if (allTools[i].value === value)
-        {
-            return allTools[i]
-        }
-    }
-    return null
-}
-
-export function createComponent(toolName, toolObj) {
-    // console.log(toolObj)
-    let tool = getTool(toolName)
-    tool.key = toolObj.key
-    tool.toolValue = toolObj.toolValue
-    tool.toolObj = { ...toolObj }
-    return createFormTool(tool)
-}
 
 const Tools = (props) => {
 
     const handleClick = (e, data) => {
-        let tool = getTool(data.icon)
-        let createdTool = createFormTool(tool)
-        props.callbackComponent(createdTool) // Callback selected tool to the Creator component
+        props.sendTool(data.value)
+        console.debug('sent back tool: ', data.value)
     }
 
     return (
@@ -112,7 +57,7 @@ const Tools = (props) => {
                                     <Popup
                                         basic
                                         content={obj.text}
-                                        trigger={<Button size='large' color='blue' icon={obj.icon} key={i} onClick={handleClick} />}
+                                        trigger={<Button size='large' color='blue' value={obj.value} icon={obj.icon} key={i} onClick={handleClick} />}
                                     />
                                 </List.Item>)}
                         </List>
@@ -124,13 +69,13 @@ const Tools = (props) => {
                                     <Popup
                                         basic
                                         content={obj.text}
-                                        trigger={<Button size='large' color='blue' icon={obj.icon} key={i} onClick={handleClick} />}
+                                        trigger={<Button size='large' color='blue' value={obj.value} icon={obj.icon} key={i} onClick={handleClick} />}
                                     />
                                 </List.Item>)}
                         </List>
                     </Grid.Column>
                 </Grid.Row>
-                </Grid>
+            </Grid>
         </Segment>
     )
 }

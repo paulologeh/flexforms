@@ -5,7 +5,7 @@ import { RouterConfig } from "navigation/RouterConfig";
 // Styles
 import './App.css';
 // Context
-import { CreatorsProvider } from 'context/contextCreator'
+import { CreatorsProvider } from 'context/store'
 
 class App extends Component {
 

@@ -1,16 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Menu, Image, Dropdown, Container} from 'semantic-ui-react'
 import logo from 'assets/FlexFormsLogoNoText.png'
-import { CREATOR, PREVIEW } from "navigation/CONSTANTS"
+import { CREATOR } from "navigation/CONSTANTS"
+import Preview from './Preview'
+
+
 
 const CreatorMenu = (props) => {
 
+    const [active, setActive] = useState(null);
+
     const handleClick = (e, data) => {
-        let action
-        if ('children' in data) action = data.children
-        else action = data.text
-        props.sendAction(action)
-        console.debug('sent back action to parent', action)
+        if (data.text)
+        {
+            setActive(data.text)
+            props.callbackActive(data.text)
+        }
+        else
+        {
+            setActive(data.children)
+            props.callbackActive(data.children)
+        }    
     }
 
     return (
@@ -34,18 +44,11 @@ const CreatorMenu = (props) => {
                 </Dropdown>
                 <Dropdown item simple text='Templates'>
                     <Dropdown.Menu>
-                        <Dropdown.Item icon='wpforms' text='Application Form' onClick={handleClick}/>
+                        <Dropdown.Item text='Application Form' onClick={handleClick}/>
                     </Dropdown.Menu>
                 </Dropdown>
-                <Menu.Item
-                    onClick={handleClick}
-                    href={PREVIEW}
-                    target='_blank'
-                    rel="noopener noreferrer"
-                >
-                    Preview
-                </Menu.Item>
-                <Menu.Item onClick={handleClick}> Publish Form </Menu.Item>
+                <Preview children={<Menu.Item as='a'> Preview </Menu.Item>}/>
+                <Menu.Item as='a' active={active === 'Publish'} onClick={handleClick}> Publish Form </Menu.Item>
             </Container>
         </Menu>
     )

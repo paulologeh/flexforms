@@ -1,4 +1,5 @@
 import { isObjInvalid } from "./invalidObject";
+
 export const arrayHasKey = (element, array) =>
 {
     if (isObjInvalid(element) || isObjInvalid(array)) {

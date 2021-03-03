@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import { Rnd } from 'react-rnd'
-import { CreatorsContext } from 'context/contextCreator'
+import { CreatorsContext } from 'context/store'
 
 
 const EditableElement = (props) => {
@@ -30,40 +30,40 @@ const EditableElement = (props) => {
 
 const CustomLabel = (props) => {
 
-    const [createdTools, updateCreated] = useContext(CreatorsContext)
+    const [getContext, setContext] = useContext(CreatorsContext)
     const [state, setState] = useState('Label')
     const handleClick = () => {
         // onclick update the selected tool in the store with this
         let storeProps = {id: props.id, toolName: props.toolname}
-        props.handleToolClick(storeProps, createdTools, updateCreated)
+        props.handleToolClick(storeProps, getContext, setContext)
     }
 
     const handleKeys = (event) => {
         if (event.keyCode === 46)
         {
-            props.deleteFromStore(props.id, createdTools, updateCreated)   
+            props.deleteFromStore(props.id, getContext, setContext)   
         }
     } 
 
     const handleChange = (value) => setState(value)
 
     const handleDrag = (event, d) => {
-        props.handleDrag(props.id, d, createdTools, updateCreated)
+        props.handleDrag(props.id, d, getContext, setContext)
     }
 
     const handleResize = (event, direction, ref, delta, position) => {
-        props.handleResize(props.id, ref,createdTools, updateCreated)
+        props.handleResize(props.id, ref,getContext, setContext)
     }
 
     useEffect(
         () => {
-            let newContext = JSON.parse(JSON.stringify(createdTools))
+            let newContext = JSON.parse(JSON.stringify(getContext))
             for (let i in newContext.tools)
             {
                 if (newContext.tools[i].key === props.id)
                 {
                     newContext.tools[i].toolValue = state.slice()
-                    updateCreated(newContext)
+                    setContext(newContext)
                     break
                 }
             }

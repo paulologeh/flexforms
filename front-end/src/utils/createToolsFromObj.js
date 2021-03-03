@@ -1,6 +1,6 @@
 import React from 'react';
 import {Rnd} from 'react-rnd'
-import {Time, Text, TextArea, StaticLabel, Radio, Checkbox, Number, Heading, Dates} from 'layout/viewer/index'
+import {Time, Text, TextArea, StaticLabel, Radio, Checkbox, Number, Heading, Dates} from 'layout/viewertools/index'
 
 
 const panelStyle = {
@@ -10,14 +10,14 @@ const panelStyle = {
     border: "solid 1px #ddd"
 }
 
-export function createToolsFromObj(createdTools, open, pos) {
-    if (createdTools.tools.length === 0) return null
+export function createToolsFromObj(getContext, open, pos) {
+    if (getContext.tools.length === 0) return null
     if (!open) return null
     if (pos === null) return null
     let height = pos.offsetHeight 
     let width = pos.offsetWidth
     let components = []
-    let tempTools = JSON.parse(JSON.stringify(createdTools))
+    let tempTools = JSON.parse(JSON.stringify(getContext))
     let tools = [...tempTools.tools]
 
     for (let i in tools)
