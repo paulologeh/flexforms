@@ -40,7 +40,7 @@ Example Temporary ids collection entry
 			"yPosition": "50%",
 			"width": "50%",
 			"height": "50%"
-		}
+		},
 		{
 			"type": "Panel",
 			"xPosition": "50%",
@@ -48,7 +48,7 @@ Example Temporary ids collection entry
 			"width": "50%",
 			"height": "50%",
 			"color": "blue"
-		}
+		},
 		{
 			"type": "Label",
 			"xPosition": "50%",
