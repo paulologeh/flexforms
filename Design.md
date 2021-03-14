@@ -2,7 +2,7 @@
 
 ## Requirements
 
-The application must ..
+*The application must ..*
 -   Allow creators to create forms
 -   Allow creators to load forms
 -   Allow creators to save forms
@@ -10,7 +10,7 @@ The application must ..
 -   Allow creators to view forms responses
 -   Maintain a collection of forms
 
-The application should be ...
+*The application should be ...*
 -   Intuitive to use
 -   Available 24/7
 -   Updatable
@@ -19,7 +19,6 @@ The application should be ...
 ![Overview](./design_images/Design-Overview.png)
 
 ## Data Modelling
-
 ![Overview](./design_images/Design-DataModel.png)
 
 Example Temporary ids collection entry
