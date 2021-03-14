@@ -4,8 +4,8 @@
 
 *The application must ..*
 -   Allow creators to create forms
--   Allow creators to load forms
 -   Allow creators to save forms
+-   Allow creators to load saved forms
 -   Allow responders to fill forms
 -   Allow creators to view forms responses
 -   Maintain a collection of forms
@@ -21,7 +21,9 @@
 ## Data Modelling
 ![Overview](./design_images/Design-DataModel.png)
 
-Example Temporary ids collection entry
+> Note: Premium forms will have more features than free forms. Free forms will expire after a certain amount of time.
+
+Example Free forms collection entry
 ```
 {
 	"form_id": "kgefijongeornoejfnw3435448trfn90e",
@@ -59,10 +61,10 @@ Example Temporary ids collection entry
 	]
 }
 ```
-Note: Percentages are used for positions instead of absolute values inorder to ensure responsiveness. 
-We will have two functions
-- pixelsToPercentage(client, pixels)
-- percentageToPixels(client, percentages)
+> Note: Percentages are used for positions instead of absolute values inorder to ensure responsiveness. 
+>	We will have two functions
+>	- pixelsToPercentage(client, pixels)
+>	- percentageToPixels(client, percentages)
 
 Example FormA collection entries
 ```
