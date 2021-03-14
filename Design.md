@@ -59,6 +59,10 @@ Example Temporary ids collection entry
 	]
 }
 ```
+Note: Percentages are used for positions instead of absolute values inorder to ensure responsiveness. 
+We will have two functions
+- pixelsToPercentage(client, pixels)
+- percentageToPixels(client, percentages)
 
 Example FormA collection entries
 ```
