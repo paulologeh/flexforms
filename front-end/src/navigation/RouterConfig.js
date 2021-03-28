@@ -6,7 +6,7 @@ import { NotFound } from "navigation/NotFound";
 import { ROOT, DASHBOARD, PAGE1, AUTH_PAGE1 } from "navigation/CONSTANTS";
 import { Page1 } from "pages/Page1";
 import Login from "./Auth/Login";
-import { AuthorizedPage1 } from "pages/AuthorizedPage";
+import { AuthorizedPage1 } from "pages/AuthorizedPage1";
 import PrivateRoute from "./Auth/PrivateRoute";
 
 export const RouterConfig = () => {
