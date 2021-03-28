@@ -1,5 +1,4 @@
 import withRoot from 'pages/Home/withRoot';
-// --- Post bootstrap -----
 import React from 'react';
 import ProductCategories from 'pages/Home/views/ProductCategories';
 import ProductSmokingHero from 'pages/Home/views/ProductSmokingHero';
