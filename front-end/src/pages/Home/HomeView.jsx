@@ -4,11 +4,13 @@ import { GetStartedGrid } from 'pages/Home/components';
 import PropTypes from 'prop-types';
 import FlexForms500x500Transparent from 'assets/FlexForms500x500Transparent.png';
 import { Banner } from './components/Banner';
+import { AppHeader, AppFooter } from 'pages/Home/components';
 
 
 export const HomeView = ({ closeGrid, openGrid, open, mobile = false }) => {
     return (
         <>
+            {/* <AppHeader/> */}
             <Image src={FlexForms500x500Transparent} size={'medium'} inline={true} />
             <Container text >
                 <Header
@@ -50,7 +52,8 @@ export const HomeView = ({ closeGrid, openGrid, open, mobile = false }) => {
                     </Modal.Actions>
                 </Modal>
             </Container>
-            <Banner/>
+            <Banner />
+            {/* <AppFooter /> */}
         </>
     )
 }
