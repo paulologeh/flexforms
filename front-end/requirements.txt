@@ -1,14 +1,3 @@
-npm install redux-thunk
-npm install redux react-redux
-npm install @reduxjs/toolkit
-npm install react-router-dom
-npm install axios
-npm install react-i18next i18next
-npm install i18next-browser-languagedetector
-npm install mongodb
-npm install @material-ui/core
-npm install @material-ui/icons
-npm install fontsource-roboto
+npm install react-router
+npm install semantic-ui-react semantic-ui-css
 npm install firebase
-npm install env-cmd
-npm install -g firebase-tools
