@@ -8,8 +8,6 @@ export class AppHeader extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
-    const { activeItem } = this.state;
-
     return (
       <Menu borderless inverted fixed="top">
         <Menu.Item position="center" href={ROOT}>

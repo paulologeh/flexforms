@@ -4,13 +4,13 @@ import { useAuth } from "context/AuthContext";
 import { SIGN_IN } from "navigation/CONSTANTS";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { currentUser } = useAuth();
+  const { user } = useAuth();
 
   return (
     <Route
       {...rest}
       render={(props) => {
-        return currentUser ? (
+        return user ? (
           <Component {...props} />
         ) : (
           <Redirect to={SIGN_IN} />

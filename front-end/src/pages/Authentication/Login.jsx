@@ -20,8 +20,8 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const { login } = useAuth();
   const [loading, setLoading] = useState();
-  const hanleEmailChange = (e) => setEmail(e.target.value);
-  const hanlePasswordChange = (e) => setPassword(e.target.value);
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
   const history = useHistory();
 
   const handleLogin = async (e) => {
@@ -60,7 +60,7 @@ export const Login = () => {
               iconPosition="left"
               placeholder="E-mail address"
               required
-              onChange={hanleEmailChange}
+              onChange={handleEmailChange}
             />
             <Form.Input
               value={password}
@@ -70,7 +70,7 @@ export const Login = () => {
               placeholder="Enter Password"
               type="password"
               required
-              onChange={hanlePasswordChange}
+              onChange={handlePasswordChange}
             />
             <Button
               color="black"

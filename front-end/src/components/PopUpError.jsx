@@ -7,6 +7,6 @@ export const PopUpError = ({ error, errorType }) => {
 };
 
 PopUpError.propTypes = {
-  error: PropTypes.string.isRequired,
+  error: PropTypes.string,
   errorType: PropTypes.string.isRequired,
 };
