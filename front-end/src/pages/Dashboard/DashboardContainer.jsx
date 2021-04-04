@@ -1,8 +1,9 @@
 import React from "react";
-import { Tab } from "semantic-ui-react";
+import { Container, Tab } from "semantic-ui-react";
 import { DashboardMenu } from "./components/DashboardMenu";
 import { Profile } from "./components/Profile";
 import { useAuth } from "context/AuthContext";
+import { isMobile } from "utils";
 
 export const DashboardContainer = () => {
   const { user } = useAuth();
@@ -16,12 +17,12 @@ export const DashboardContainer = () => {
       ),
     },
     {
-      menuItem: { key: "my-forms", icon: "archive", content: "My Forms" },
-      render: () => <Tab.Pane>My Forms</Tab.Pane>,
+      menuItem: { key: "my-forms", icon: "archive", content: "Forms" },
+      render: () => <Tab.Pane>Forms</Tab.Pane>,
     },
     {
-      menuItem: { key: "editor", icon: "wpforms", content: "Form Editor" },
-      render: () => <Tab.Pane>Edit Forms</Tab.Pane>,
+      menuItem: { key: "editor", icon: "wpforms", content: "Editor" },
+      render: () => <Tab.Pane>Editor</Tab.Pane>,
     },
     {
       menuItem: { key: "settings", icon: "setting", content: "Settings" },
@@ -30,13 +31,16 @@ export const DashboardContainer = () => {
   ];
 
   return (
-    <div className="App">
+    <div>
       <DashboardMenu userEmail={user.email} />
-      <Tab
-        menu={{ fluid: true, vertical: true, text: true }}
-        menuPosition="left"
-        panes={panes}
-      />
+      <Container>
+        <Tab
+          menu={{ fluid: true, vertical: !isMobile(), text: isMobile() }}
+          menuPosition={isMobile() ? null : "left"}
+          panes={panes}
+          style={{ alignItems: "center", textAlign: "left" }}
+        />
+      </Container>
     </div>
   );
 };

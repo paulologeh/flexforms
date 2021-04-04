@@ -5,6 +5,7 @@ import { useAuth } from "context/AuthContext";
 import PropTypes from "prop-types";
 import { DELETE } from "navigation/CONSTANTS";
 import { Link } from "react-router-dom";
+import { isMobile } from "utils";
 
 export const Profile = ({ userEmail }) => {
   const [email, setEmail] = useState("");
@@ -55,7 +56,7 @@ export const Profile = ({ userEmail }) => {
   };
   return (
     <Grid textAlign="center" verticalAlign="middle">
-      <Grid.Column style={{ maxWidth: "50%" }}>
+      <Grid.Column style={{ maxWidth: isMobile() ? "100%" : "50%" }}>
         {error && (
           <ErrorMessage errorType="Sorry that did not work" error={error} />
         )}
