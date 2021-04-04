@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, Header, Container, Button, Icon, Modal } from "semantic-ui-react";
+import {
+  Image,
+  Header,
+  Container,
+  Button,
+  Icon,
+  Modal,
+} from "semantic-ui-react";
 import { GetStartedGrid } from "pages/Home/components";
 import PropTypes from "prop-types";
 import FlexForms500x500Transparent from "assets/FlexForms500x500Transparent.png";
@@ -45,9 +52,6 @@ export const HomeView = ({ closeGrid, openGrid, open, mobile = false }) => {
           <Modal.Content>
             <GetStartedGrid />
           </Modal.Content>
-          <Modal.Actions>
-            <Button onClick={openGrid}>Close</Button>
-          </Modal.Actions>
         </Modal>
       </Container>
       <Banner />
