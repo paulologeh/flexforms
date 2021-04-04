@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { DASHBOARD, ROOT } from "navigation/CONSTANTS";
 import { PopUpError } from "components";
 import { useAuth } from "context/AuthContext";
+import { isMobile } from "utils";
 import logo from "assets/FlexFormsLogoNoText.png";
 import avatar from "assets/rachel.png";
 
@@ -26,35 +27,42 @@ export const DashboardMenu = ({ userEmail }) => {
       if ("message" in err) {
         setError(err.message);
       } else {
-        setError("Failed to login to account");
+        setError("Failed to logout");
       }
     }
   };
 
   return (
-    <Menu inverted borderless>
-      <Menu.Item>
-        <Image size="mini" src={logo} style={centerImage} />
-        <Link to={DASHBOARD}>Flex-Forms</Link>
-      </Menu.Item>
-      <Menu.Menu position="right">
-        <Menu.Item>{userEmail}</Menu.Item>
-        <Menu.Item as="a">
-          <Image
-            src={avatar}
-            alt="avatar"
-            size="mini"
-            circular
-            style={centerImage}
-            floated="right"
-          />
-        </Menu.Item>
-        <Menu.Item as="a" onClick={handleLogout}>
-          Logout
-        </Menu.Item>
-      </Menu.Menu>
-
+    <>
+      <Menu
+        inverted
+        borderless
+        // stackable
+        style={{ textAlign: "center", width: "100%" }}
+      >
+        <Menu.Menu>
+          <Menu.Item>
+            <Image size="mini" src={logo} />
+            {!isMobile() && <Link to={DASHBOARD}>Flex-Forms</Link>}
+          </Menu.Item>
+        </Menu.Menu>
+        <Menu.Menu position={"right"}>
+          <Menu.Item>{userEmail}</Menu.Item>
+          <Menu.Item as="a">
+            <Image
+              src={avatar}
+              alt="avatar"
+              size="mini"
+              circular
+              style={centerImage}
+            />
+          </Menu.Item>
+          <Menu.Item as="a" onClick={handleLogout}>
+            {"Logout"}
+          </Menu.Item>
+        </Menu.Menu>
+      </Menu>
       <PopUpError error={error} errorType="Error" />
-    </Menu>
+    </>
   );
 };
