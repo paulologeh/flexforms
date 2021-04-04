@@ -7,3 +7,5 @@ export const FORM_EDITOR = process.env.PUBLIC_URL + "/form_editor";
 export const DATA_VIEWER = process.env.PUBLIC_URL + "/data_viewer";
 export const FORM_VIEWER = process.env.PUBLIC_URL + "/form_viewer";
 export const DELETE = process.env.PUBLIC_URL + "/delete";
+export const TERMS = process.env.PUBLIC_URL + "/terms";
+export const PRIVACY = process.env.PUBLIC_URL + "/privacy";

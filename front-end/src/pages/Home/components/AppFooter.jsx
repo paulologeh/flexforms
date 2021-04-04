@@ -1,5 +1,6 @@
 import React from "react";
 import { Segment, Container, Grid, Header, List } from "semantic-ui-react";
+import { TERMS, PRIVACY } from "navigation/CONSTANTS";
 
 export const AppFooter = () => {
   return (
@@ -9,7 +10,9 @@ export const AppFooter = () => {
           <Grid.Column>
             <Header inverted as="h3" content="About" />
             <List link inverted>
-              <List.Item as="a">Source Code</List.Item>
+              <List.Item as="a" href="https://github.com/paulologeh/Flex-Forms">
+                Source Code
+              </List.Item>
               <List.Item as="a">Contact</List.Item>
             </List>
           </Grid.Column>
@@ -25,8 +28,12 @@ export const AppFooter = () => {
               Legal
             </Header>
             <List link inverted>
-              <List.Item as="a">Privacy Policy</List.Item>
-              <List.Item as="a">Tems and Conditions</List.Item>
+              <List.Item as="a" href={PRIVACY}>
+                Privacy Policy
+              </List.Item>
+              <List.Item as="a" href={TERMS}>
+                Terms and Conditions
+              </List.Item>
             </List>
           </Grid.Column>
         </Grid>

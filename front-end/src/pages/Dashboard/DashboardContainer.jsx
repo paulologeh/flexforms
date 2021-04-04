@@ -4,11 +4,6 @@ import { DashboardMenu } from "./components/DashboardMenu";
 import { Profile } from "./components/Profile";
 import { useAuth } from "context/AuthContext";
 
-const dashStyle = {
-  flexGrow: 1,
-  height: "100vh",
-};
-
 export const DashboardContainer = () => {
   const { user } = useAuth();
   const panes = [

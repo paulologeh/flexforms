@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Container, Header } from "semantic-ui-react";
+import { Form, Grid, Header } from "semantic-ui-react";
 import { ErrorMessage, SuccessMessage } from "components";
 import { useAuth } from "context/AuthContext";
 import PropTypes from "prop-types";
@@ -54,39 +54,41 @@ export const Profile = ({ userEmail }) => {
       });
   };
   return (
-    <Container>
-      {error && (
-        <ErrorMessage errorType="Sorry that did not work" error={error} />
-      )}
-      {success && <SuccessMessage type="Success!" message={success} />}
-      <Form onSubmit={handleUpdate} padded>
-        <Header>Update Your Profile</Header>
-        <Form.Input
-          label="Email"
-          placeholder={userEmail}
-          value={email}
-          onChange={handleEmailChange}
-        />
-        <Form.Input
-          label="Password"
-          placeholder="New Password"
-          // placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
-          value={password}
-          type="password"
-          onChange={handlePasswordChange}
-        />
-        <Form.Input
-          value={confirmPassword}
-          placeholder="Confirm Password"
-          type="password"
-          onChange={handleConfirmChange}
-        />
-        <Form.Button disabled={loading}>Update</Form.Button>
-      </Form>
-      <br />
-      <br />
-      <Link to={DELETE}>Delete Account</Link>
-    </Container>
+    <Grid textAlign="center" verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: "50%" }}>
+        {error && (
+          <ErrorMessage errorType="Sorry that did not work" error={error} />
+        )}
+        {success && <SuccessMessage type="Success!" message={success} />}
+        <Form onSubmit={handleUpdate} padded>
+          <Header>Update Your Profile</Header>
+          <Form.Input
+            label="Email"
+            placeholder={userEmail}
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <Form.Input
+            label="Password"
+            placeholder="New Password"
+            // placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+            value={password}
+            type="password"
+            onChange={handlePasswordChange}
+          />
+          <Form.Input
+            value={confirmPassword}
+            placeholder="Confirm Password"
+            type="password"
+            onChange={handleConfirmChange}
+          />
+          <Form.Button disabled={loading}>Update</Form.Button>
+        </Form>
+        <br />
+        <br />
+        <Link to={DELETE}>Delete Account</Link>
+      </Grid.Column>
+    </Grid>
   );
 };
 

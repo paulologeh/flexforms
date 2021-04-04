@@ -1,3 +1,8 @@
 npm install react-router
 npm install semantic-ui-react semantic-ui-css
 npm install firebase
+npm install --save-dev enzyme enzyme-adapter-react-16 react-test-renderer
+npm install --save-dev babel-jest @babel/preset-env @babel/preset-react
+npm install --save-dev jest@26.6.0
+npm install --save-dev @babel/plugin-proposal-class-properties @babel/plugin-syntax-dynamic-import
+npm install react-markdown
