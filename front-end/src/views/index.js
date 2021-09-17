@@ -1,5 +1,5 @@
 import Home from "./Home";
-import CreateForm from "./CreateForm";
-import ViewForm from "./ViewForm";
+import FormEditor from "./FormEditor";
+import FormViewer from "./FormViewer";
 
-export { Home, CreateForm, ViewForm };
+export { Home, FormEditor, FormViewer };

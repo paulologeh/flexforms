@@ -1,15 +1,5 @@
-import React, { useState, useContext } from "react";
-import {
-  Grid,
-  Segment,
-  Header,
-  Input,
-  Menu,
-  Icon,
-  Popup,
-  Sidebar,
-  Checkbox,
-} from "semantic-ui-react";
+import React, { useContext } from "react";
+import { Grid, Segment, Header, Input, Menu, Icon } from "semantic-ui-react";
 import { ToolStore, ToolStoreProvider } from "contexts/toolsContext";
 import cloneDeep from "lodash/cloneDeep";
 import { Rnd } from "react-rnd";
@@ -98,39 +88,20 @@ const ToolBar = ({ visible, handleSideBar }) => {
   };
 
   return (
-    <>
-      <Sidebar.Pushable as={Segment}>
-        <Sidebar
-          as={Menu}
-          animation="overlay"
-          icon="labeled"
-          inverted
-          onHide={() => handleSideBar(false)}
-          vertical
-          visible={visible}
-          width="thin"
-        >
-          <Menu.Item
-            // component={tools[0].component}
-            name={tools[0].icon}
-            key={"1"}
-            onClick={handleClick}
-          >
-            <Icon name={tools[0].icon} />
-            General Input
-          </Menu.Item>
-        </Sidebar>
-        <Sidebar.Pusher>
-          <Canvas style={{ marginTop: 10 }} />
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
-    </>
+    <Menu style={{ marginBottom: 10 }}>
+      <Menu.Item
+        // component={tools[0].component}
+        name={tools[0].icon}
+        key={"1"}
+        onClick={handleClick}
+      >
+        <Icon name={tools[0].icon} />
+      </Menu.Item>
+    </Menu>
   );
 };
 
-const CreateForm = () => {
-  const [visible, setVisible] = useState(false);
-
+const FormEditor = () => {
   return (
     <ToolStoreProvider>
       <div className="App">
@@ -143,27 +114,14 @@ const CreateForm = () => {
           <Grid.Column style={{ maxWidth: 700, minWidth: 700 }}>
             <Grid.Row>
               <Segment secondary style={{ marginBottom: 10 }}>
-                <Header as="h2">
-                  <Popup
-                    content="Show/Hide Tool Bar"
-                    trigger={
-                      <Checkbox
-                        toggle
-                        checked={visible}
-                        style={{ float: "left" }}
-                        onChange={(e, data) => setVisible(data.checked)}
-                      />
-                    }
-                  />
-                  Form Editor
-                </Header>
+                <Header as="h2">Form Editor</Header>
               </Segment>
             </Grid.Row>
             <Grid.Row>
-              <ToolBar
-                visible={visible}
-                handleSideBar={(value) => setVisible(value)}
-              />
+              <ToolBar />
+            </Grid.Row>
+            <Grid.Row>
+              <Canvas />
             </Grid.Row>
           </Grid.Column>
         </Grid>
@@ -172,4 +130,4 @@ const CreateForm = () => {
   );
 };
 
-export default CreateForm;
+export default FormEditor;

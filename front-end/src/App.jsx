@@ -6,15 +6,18 @@ import { AppRoute } from "utils";
 import "./App.css";
 
 // Views
-import { Home, CreateForm, ViewForm } from "views";
+import { Home, FormEditor, FormViewer } from "views";
+
+import { NotFound } from "components/NotFound";
 
 const App = () => {
   return (
     <Switch>
       <AppRoute exact path="/" component={Home} />
       <AppRoute exact path="/home" component={Home} />
-      <AppRoute exact path="/createform" component={CreateForm} />
-      <AppRoute exact path="/viewform" component={ViewForm} />
+      <AppRoute exact path="/formeditor" component={FormEditor} />
+      <AppRoute exact path="/formviewer" component={FormViewer} />
+      <AppRoute component={NotFound} />
     </Switch>
   );
 };
