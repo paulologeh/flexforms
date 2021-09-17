@@ -22,7 +22,7 @@ const GeneralInput = ({ x, y }) => {
   return <Input style={{ position: "absolute", top: y, left: x }} />;
 };
 
-const ViewForm = () => {
+const FormViewer = () => {
   const [toolState, setToolState] = useState([]);
   const [formTitle] = useState("Form Title");
 
@@ -73,4 +73,4 @@ const ViewForm = () => {
   );
 };
 
-export default ViewForm;
+export default FormViewer;
