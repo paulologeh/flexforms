@@ -1,50 +1,18 @@
 import React, { useContext } from "react";
-import { Grid, Segment, Header, Input, Menu, Icon } from "semantic-ui-react";
 import { ToolStore, ToolStoreProvider } from "contexts/toolsContext";
 import cloneDeep from "lodash/cloneDeep";
-import { Rnd } from "react-rnd";
+import { Grid, Segment, Header, Menu, Icon } from "semantic-ui-react";
+import { EditorTool } from "components";
+import { updateToolPosition } from "utils";
+import { tools } from "utils/tools";
 import "../App.css";
 
-var counter = 0;
-
-const GeneralInput = ({ tool_id }) => {
-  const [toolStore, updateToolStore] = useContext(ToolStore);
-  const handleDragStop = (e, d) => {
-    let oldToolStore = cloneDeep(toolStore);
-    let allToolProps = oldToolStore.allToolProps;
-    for (let i = 0; i < allToolProps.length; i++) {
-      if (allToolProps[i].tool_id === tool_id) {
-        let X = d.x;
-        let Y = d.y;
-        /********************************* Improve later *************************************
-        let parentWidth = d.node.offsetParent.offsetWidth;
-        let parentHeight = d.node.offsetParent.offsetHeight;
-        let clientWidth = d.node.offsetWidth;
-        let clientHeight = d.node.offsetHeight;
-        console.log(X, Y, parentWidth, parentHeight, clientWidth, clientHeight);
-        allToolProps[i].x = `${100 * (X / (parentWidth - clientWidth))}%`;
-        allToolProps[i].y = `${100 * (Y / (parentHeight - clientHeight))}%`;
-        */
-        allToolProps[i].x = X;
-        allToolProps[i].y = Y;
-        oldToolStore.allToolProps = allToolProps;
-        updateToolStore(oldToolStore);
-        break;
-      }
-    }
-  };
-
-  return (
-    <Rnd onDragStop={handleDragStop} bounds=".Canvas">
-      <Input />
-    </Rnd>
-  );
-};
+var COUNTER = 0;
 
 const Canvas = () => {
   const [toolStore] = useContext(ToolStore);
 
-  console.log(toolStore);
+  console.log("Canvas: ", toolStore);
 
   return (
     <Segment
@@ -63,40 +31,51 @@ const Canvas = () => {
   );
 };
 
-const ToolBar = ({ visible, handleSideBar }) => {
+const ToolBar = () => {
   const [toolStore, updateToolStore] = useContext(ToolStore);
-  const tools = [
-    {
-      icon: "calendar alternate outline",
-      tool: "date-time",
-      component: Input,
-    },
-  ];
 
-  const handleClick = () => {
+  const handleClick = (e, data) => {
     // send to tools context
     let oldToolStore = cloneDeep(toolStore);
-    let toolProps = { key: counter, tool_id: counter };
-    oldToolStore.allTools.push(React.createElement(GeneralInput, toolProps));
-    oldToolStore.allToolProps.push({
-      key: counter,
-      tool: "GeneralInput",
-      tool_id: counter,
-    });
-    updateToolStore(oldToolStore);
-    counter++;
+    let toolProps = {
+      key: COUNTER,
+      toolId: COUNTER,
+      updateToolPosition: updateToolPosition,
+    };
+    // Determine which tool was clicked
+    let toolName = null;
+    for (let i = 0; i < tools.length; i++) {
+      if ("icon" in tools[i] && "name" in data && tools[i].icon === data.name) {
+        toolName = tools[i].name;
+        if ("component" in tools[i]) toolProps.component = tools[i].component;
+        if ("props" in tools[i]) toolProps.props = tools[i].props;
+        break;
+      }
+    }
+
+    // update tools context
+    if ("component" in toolProps) {
+      oldToolStore.allTools.push(React.createElement(EditorTool, toolProps));
+      oldToolStore.allToolProps.push({
+        key: COUNTER,
+        tool: toolName,
+        toolId: COUNTER,
+      });
+      updateToolStore(oldToolStore);
+      COUNTER++;
+    } else {
+      console.error("No Component for", toolName);
+    }
   };
 
   return (
     <Menu style={{ marginBottom: 10 }}>
-      <Menu.Item
-        // component={tools[0].component}
-        name={tools[0].icon}
-        key={"1"}
-        onClick={handleClick}
-      >
-        <Icon name={tools[0].icon} />
-      </Menu.Item>
+      {tools.map((tool, i) => (
+        <Menu.Item key={i} onClick={handleClick} name={tool.icon}>
+          <Icon name={tool.icon} />
+        </Menu.Item>
+      ))}
+      <Menu.Item style={{ marginLeft: 2 }}>Tool Bar</Menu.Item>
     </Menu>
   );
 };
@@ -111,7 +90,7 @@ const FormEditor = () => {
           padded
           verticalAlign="middle"
         >
-          <Grid.Column style={{ maxWidth: 700, minWidth: 700 }}>
+          <Grid.Column style={{ maxWidth: 702, minWidth: 700 }}>
             <Grid.Row>
               <Segment secondary style={{ marginBottom: 10 }}>
                 <Header as="h2">Form Editor</Header>
