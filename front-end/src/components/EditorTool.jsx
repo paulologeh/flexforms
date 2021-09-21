@@ -6,15 +6,33 @@ export const EditorTool = ({
   component: Component,
   props,
   toolId,
-  updateToolPosition,
+  onToolDragStop,
+  onToolKeyDown,
+  onToolClick,
 }) => {
   const [toolStore, updateToolStore] = useContext(ToolStore);
 
-  const handleDragStop = (e, position) => {
-    updateToolPosition(toolId, position, toolStore, updateToolStore);
+  const handleClick = (event) => {
+    onToolClick(toolId, toolStore, updateToolStore);
+  };
+
+  const handleDragStop = (event, position) => {
+    onToolDragStop(toolId, position, toolStore, updateToolStore);
+  };
+
+  const handleKeys = (event) => {
+    if (event.keyCode === 8 || event.keyCode === 46) {
+      onToolKeyDown(toolId, toolStore, updateToolStore);
+    }
   };
   return (
-    <Rnd onDragStop={handleDragStop} bounds=".Canvas">
+    <Rnd
+      onClick={handleClick}
+      onGotPointerCapture={handleClick}
+      onDragStop={handleDragStop}
+      onKeyDown={handleKeys}
+      bounds=".Canvas"
+    >
       <Component {...props} />
     </Rnd>
   );

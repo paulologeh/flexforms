@@ -1,4 +1,4 @@
 import AppRoute from "./AppRoute";
 
-export { updateToolPosition } from "./updateToolPosition";
+export { onToolDragStop, onToolKeyDown, onToolClick } from "./toolEvents";
 export { AppRoute };
