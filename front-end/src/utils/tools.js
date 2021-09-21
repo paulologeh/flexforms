@@ -60,5 +60,4 @@ export const tools = [
   },
   { icon: "dot circle outline", name: "radio", component: Radio },
   { icon: "clone outline", name: "panel" },
-  { icon: "sort amount down", name: "dropdown" },
 ];

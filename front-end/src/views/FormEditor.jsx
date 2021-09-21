@@ -1,112 +1,63 @@
-import React, { useContext } from "react";
-import { ToolStore, ToolStoreProvider } from "contexts/toolsContext";
-import cloneDeep from "lodash/cloneDeep";
-import { Grid, Segment, Header, Menu, Icon } from "semantic-ui-react";
-import { EditorTool } from "components";
-import { updateToolPosition } from "utils";
-import { tools } from "utils/tools";
+import React from "react";
+import { ToolStoreProvider } from "contexts/toolsContext";
+import { Grid } from "semantic-ui-react";
 import "../App.css";
+import {
+  Canvas,
+  EditorPanel,
+  ToolBar,
+  EditorMenuDesktop,
+  EditorMenuMobile,
+} from "./FormEditorContainer";
+import { createMedia } from "@artsy/fresnel";
 
-var COUNTER = 0;
+const AppMedia = createMedia({
+  breakpoints: {
+    mobile: 320,
+    tablet: 768,
+    computer: 992,
+    largeScreen: 1200,
+    widescreen: 1920,
+  },
+});
+const mediaStyles = AppMedia.createMediaStyle();
+const { Media, MediaContextProvider } = AppMedia;
 
-const Canvas = () => {
-  const [toolStore] = useContext(ToolStore);
-
-  console.log("Canvas: ", toolStore);
-
+const FormEditorView = () => {
   return (
-    <Segment
-      padded
-      className="Canvas"
-      style={{
-        height: "900px",
-        maxHeight: "900px",
-        minHeight: "700px",
-      }}
-    >
-      {"allTools" in toolStore && toolStore.allTools
-        ? toolStore.allTools
-        : null}
-    </Segment>
+    <>
+      <style>{mediaStyles}</style>
+      <MediaContextProvider>
+        <ToolStoreProvider>
+          <Media at="mobile">
+            <EditorMenuMobile />
+            <ToolBar isHorizontal={true} />
+            <EditorPanel height={90} />
+            <Canvas height={320} />
+          </Media>
+          <Media greaterThan="mobile">
+            <EditorMenuDesktop />
+            <Grid
+              style={{ overflow: "auto" }}
+              textAlign="center"
+              padded
+              columns="equal"
+            >
+              <Grid.Column width={2} style={{ maxWidth: 115, minWidth: 100 }}>
+                <ToolBar isHorizontal={false} />
+              </Grid.Column>
+              <Grid.Column width={10} style={{ maxWidth: 600 }}>
+                <Canvas />
+              </Grid.Column>
+              <Grid.Column width={4} style={{ maxWidth: 258 }}>
+                <EditorPanel />
+              </Grid.Column>
+            </Grid>
+          </Media>
+        </ToolStoreProvider>
+      </MediaContextProvider>
+    </>
   );
 };
 
-const ToolBar = () => {
-  const [toolStore, updateToolStore] = useContext(ToolStore);
-
-  const handleClick = (e, data) => {
-    // send to tools context
-    let oldToolStore = cloneDeep(toolStore);
-    let toolProps = {
-      key: COUNTER,
-      toolId: COUNTER,
-      updateToolPosition: updateToolPosition,
-    };
-    // Determine which tool was clicked
-    let toolName = null;
-    for (let i = 0; i < tools.length; i++) {
-      if ("icon" in tools[i] && "name" in data && tools[i].icon === data.name) {
-        toolName = tools[i].name;
-        if ("component" in tools[i]) toolProps.component = tools[i].component;
-        if ("props" in tools[i]) toolProps.props = tools[i].props;
-        break;
-      }
-    }
-
-    // update tools context
-    if ("component" in toolProps) {
-      oldToolStore.allTools.push(React.createElement(EditorTool, toolProps));
-      oldToolStore.allToolProps.push({
-        key: COUNTER,
-        tool: toolName,
-        toolId: COUNTER,
-      });
-      updateToolStore(oldToolStore);
-      COUNTER++;
-    } else {
-      console.error("No Component for", toolName);
-    }
-  };
-
-  return (
-    <Menu style={{ marginBottom: 10 }}>
-      {tools.map((tool, i) => (
-        <Menu.Item key={i} onClick={handleClick} name={tool.icon}>
-          <Icon name={tool.icon} />
-        </Menu.Item>
-      ))}
-      <Menu.Item style={{ marginLeft: 2 }}>Tool Bar</Menu.Item>
-    </Menu>
-  );
-};
-
-const FormEditor = () => {
-  return (
-    <ToolStoreProvider>
-      <div className="App">
-        <Grid
-          style={{ overflow: "auto" }}
-          textAlign="center"
-          padded
-          verticalAlign="middle"
-        >
-          <Grid.Column style={{ maxWidth: 702, minWidth: 700 }}>
-            <Grid.Row>
-              <Segment secondary style={{ marginBottom: 10 }}>
-                <Header as="h2">Form Editor</Header>
-              </Segment>
-            </Grid.Row>
-            <Grid.Row>
-              <ToolBar />
-            </Grid.Row>
-            <Grid.Row>
-              <Canvas />
-            </Grid.Row>
-          </Grid.Column>
-        </Grid>
-      </div>
-    </ToolStoreProvider>
-  );
-};
-
-export default FormEditor;
+export default FormEditorView;
