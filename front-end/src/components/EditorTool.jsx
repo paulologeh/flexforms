@@ -40,7 +40,9 @@ export const EditorTool = ({
       enableResizing={false}
       bounds=".Canvas"
     >
-      {"initialValue" in props && props.initialValue === "StaticLabel" ? (
+      {props &&
+      "initialValue" in props &&
+      props.initialValue === "StaticLabel" ? (
         <Component {...props} save={(value) => handleSave(value)} />
       ) : (
         <Component {...props} />
