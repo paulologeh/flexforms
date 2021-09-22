@@ -45,6 +45,9 @@ export const EditableLabel = ({
         onClick={(e) => {
           setView("text");
         }}
+        onTouchEnd={(e) => {
+          setView("text");
+        }}
       >
         {value}
       </span>
