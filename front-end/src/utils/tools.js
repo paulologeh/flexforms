@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  Input,
-  Checkbox,
-  Radio,
-  Label,
-  Form,
-  TextArea,
-} from "semantic-ui-react";
+import { Input, Checkbox, Radio, Form, TextArea } from "semantic-ui-react";
+import { EditableLabel } from "components/EditableLabel";
 
 const Textarea = () => {
   return (
@@ -51,7 +45,8 @@ export const tools = [
   {
     icon: "heading",
     name: "static-label",
-    component: Label,
+    component: EditableLabel,
+    props: { initialValue: "StaticLabel" },
   },
   {
     icon: "font",

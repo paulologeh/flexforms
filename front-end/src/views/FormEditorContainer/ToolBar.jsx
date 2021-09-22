@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Segment, List, Popup } from "semantic-ui-react";
 import cloneDeep from "lodash/cloneDeep";
-import { onToolDragStop, onToolKeyDown, onToolClick } from "utils";
+import { onToolDragStop, onToolKeyDown, onToolClick, onLabelEdit } from "utils";
 import { tools } from "utils/tools";
 import { ToolStore } from "contexts/toolsContext";
 import { EditorTool } from "components";
@@ -20,9 +20,10 @@ export const ToolBar = ({ isHorizontal = false }) => {
       onToolDragStop: onToolDragStop,
       onToolKeyDown: onToolKeyDown,
       onToolClick: onToolClick,
+      onLabelEdit: onLabelEdit,
     };
-    // Determine which tool was clicked
 
+    // Determine which tool was clicked
     let toolName = null;
     for (let i = 0; i < tools.length; i++) {
       if ("icon" in tools[i] && "icon" in data && tools[i].icon === data.icon) {
