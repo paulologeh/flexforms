@@ -54,5 +54,5 @@ export const tools = [
     component: Textarea,
   },
   { icon: "dot circle outline", name: "radio", component: Radio },
-  { icon: "clone outline", name: "panel" },
+  // { icon: "clone outline", name: "panel" },
 ];

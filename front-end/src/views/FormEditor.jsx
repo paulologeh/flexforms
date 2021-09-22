@@ -30,9 +30,8 @@ const FormEditorView = () => {
       <MediaContextProvider>
         <ToolStoreProvider>
           <Media at="mobile">
-            <EditorMenuMobile />
-            <ToolBar isHorizontal={true} />
-            <EditorPanel height={90} />
+            <EditorMenuMobile toolBar={<ToolBar mobile={true} />} />
+            <EditorPanel mobile={true} />
             <Canvas height={320} />
           </Media>
           <Media greaterThan="mobile">
@@ -43,14 +42,14 @@ const FormEditorView = () => {
               padded
               columns="equal"
             >
+              <Grid.Row>
+                <EditorPanel />
+              </Grid.Row>
               <Grid.Column width={2} style={{ maxWidth: 115, minWidth: 100 }}>
-                <ToolBar isHorizontal={false} />
+                <ToolBar mobile={false} />
               </Grid.Column>
               <Grid.Column width={10} style={{ maxWidth: 600 }}>
                 <Canvas />
-              </Grid.Column>
-              <Grid.Column width={4} style={{ maxWidth: 258 }}>
-                <EditorPanel />
               </Grid.Column>
             </Grid>
           </Media>
