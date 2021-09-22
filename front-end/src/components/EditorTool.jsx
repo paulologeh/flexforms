@@ -9,6 +9,7 @@ export const EditorTool = ({
   onToolDragStop,
   onToolKeyDown,
   onToolClick,
+  onLabelEdit,
 }) => {
   const [toolStore, updateToolStore] = useContext(ToolStore);
 
@@ -25,15 +26,25 @@ export const EditorTool = ({
       onToolKeyDown(toolId, toolStore, updateToolStore);
     }
   };
+
+  const handleSave = (value) => {
+    onLabelEdit(toolId, value, toolStore, updateToolStore);
+  };
+
   return (
     <Rnd
       onClick={handleClick}
       onGotPointerCapture={handleClick}
       onDragStop={handleDragStop}
       onKeyDown={handleKeys}
+      enableResizing={false}
       bounds=".Canvas"
     >
-      <Component {...props} />
+      {"initialValue" in props && props.initialValue === "StaticLabel" ? (
+        <Component {...props} save={(value) => handleSave(value)} />
+      ) : (
+        <Component {...props} />
+      )}
     </Rnd>
   );
 };

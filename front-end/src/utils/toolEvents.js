@@ -1,5 +1,17 @@
 import cloneDeep from "lodash/cloneDeep";
 
+export const onLabelEdit = (toolId, value, toolStore, updateToolStore) => {
+  console.log(`Changing label for tool id ${toolId} to ${value}`);
+  let oldToolStore = cloneDeep(toolStore);
+  for (let i = 0; oldToolStore.allToolProps.length; i++) {
+    if (toolId === oldToolStore.allToolProps[i].toolId) {
+      oldToolStore.allToolProps[i].label = value;
+      updateToolStore(oldToolStore);
+      break;
+    }
+  }
+};
+
 export const onToolClick = (toolId, toolStore, updateToolStore) => {
   console.debug("clicked ", toolId);
   let oldToolStore = cloneDeep(toolStore);
