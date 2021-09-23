@@ -9,6 +9,10 @@ export const EditableLabel = ({
   labelClass,
   inputName,
   inputId,
+  bold,
+  italic,
+  underline,
+  textSize,
 }) => {
   const [view, setView] = useState("label");
   const [value, setValue] = useState(initialValue);
@@ -47,6 +51,12 @@ export const EditableLabel = ({
         }}
         onTouchEnd={(e) => {
           setView("text");
+        }}
+        style={{
+          fontWeight: bold ? "bold" : "normal",
+          fontStyle: italic ? "italic" : "normal",
+          textDecoration: underline ? "underline" : "",
+          fontSize: textSize,
         }}
       >
         {value}

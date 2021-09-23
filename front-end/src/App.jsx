@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch } from "react-router-dom";
 import { AppRoute } from "utils";
 
@@ -11,6 +11,11 @@ import { Home, FormEditorView, FormViewer } from "views";
 import { NotFound } from "components/NotFound";
 
 const App = () => {
+  useEffect(() => {
+    console.clear();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <Switch>
       <AppRoute exact path="/" component={Home} />

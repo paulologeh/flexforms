@@ -16,15 +16,15 @@ export const EditorMenuMobile = ({ toolBar, editorPanel }) => {
             <Icon name="dropdown" />
             <span className="text">Templates</span>
             <Dropdown.Menu>
-              <Dropdown.Item>Sample Form</Dropdown.Item>
-              <Dropdown.Item>Load Templates</Dropdown.Item>
+              <Dropdown.Item disabled>Sample Form</Dropdown.Item>
+              <Dropdown.Item disabled>Load Templates</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown.Item>
           <Dropdown.Item>
             <Icon name="dropdown" />
             <span className="text">Options</span>
             <Dropdown.Menu>
-              <Dropdown.Item>Save</Dropdown.Item>
+              <Dropdown.Item disabled>Save</Dropdown.Item>
               <Dropdown.Item>Publish Form</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown.Item>
@@ -50,13 +50,13 @@ export const EditorMenuDesktop = () => {
       </Menu.Item>
       <Dropdown item simple text="Templates">
         <Dropdown.Menu>
-          <Dropdown.Item>Sample Form</Dropdown.Item>
-          <Dropdown.Item>Load Templates</Dropdown.Item>
+          <Dropdown.Item disabled>Sample Form</Dropdown.Item>
+          <Dropdown.Item disabled>Load Templates</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
       <Dropdown item simple text="Options">
         <Dropdown.Menu>
-          <Dropdown.Item>Save</Dropdown.Item>
+          <Dropdown.Item disabled>Save</Dropdown.Item>
           <Dropdown.Item>Publish Form</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

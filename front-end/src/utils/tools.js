@@ -30,7 +30,7 @@ export const tools = [
     props: { type: "time" },
   },
   {
-    icon: "keyboard outline",
+    icon: "fax",
     name: "digit input",
     component: Input,
     props: { type: "number" },
@@ -43,13 +43,13 @@ export const tools = [
   },
   { icon: "check square outline", name: "checkbox", component: Checkbox },
   {
-    icon: "heading",
+    icon: "amilia",
     name: "static-label",
     component: EditableLabel,
     props: { initialValue: "StaticLabel" },
   },
   {
-    icon: "font",
+    icon: "keyboard outline",
     name: "text-area",
     component: Textarea,
   },
