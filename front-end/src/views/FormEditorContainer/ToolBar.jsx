@@ -42,6 +42,12 @@ export const ToolBar = ({ mobile = false }) => {
         key: counter,
         tool: toolName,
         toolId: counter,
+        bold: false,
+        italic: false,
+        underline: false,
+        textSize: 14,
+        x: 0,
+        y: 0,
       });
       updateToolStore(oldToolStore);
       let newCounter = counter + 1;

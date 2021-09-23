@@ -5,7 +5,7 @@ import { ToolStore } from "contexts/toolsContext";
 export const Canvas = ({ height = 800 }) => {
   const [toolStore] = useContext(ToolStore);
 
-  console.log("Canvas: ", toolStore);
+  console.debug("Canvas: ", toolStore);
 
   return (
     <Segment
@@ -14,7 +14,6 @@ export const Canvas = ({ height = 800 }) => {
       className="Canvas"
       style={{ height: height }}
     >
-      Canvas
       {"allTools" in toolStore && toolStore.allTools
         ? toolStore.allTools
         : null}
