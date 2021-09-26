@@ -2,7 +2,7 @@ import AppRoute from "./AppRoute";
 
 export {
   onToolDragStop,
-  onToolKeyDown,
+  onToolDelete,
   onToolClick,
   onLabelEdit,
 } from "./toolEvents";

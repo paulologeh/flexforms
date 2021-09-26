@@ -4,7 +4,7 @@ import { ToolStore } from "contexts/toolsContext";
 import cloneDeep from "lodash/cloneDeep";
 import _ from "lodash";
 
-const options = [
+const fontSizeOptions = [
   { key: 1, text: "Small", value: 7 },
   { key: 2, text: "Normal", value: 14 },
   { key: 3, text: "Large", value: 28 },
@@ -167,7 +167,7 @@ export const EditorPanel = ({ mobile }) => {
           button
           basic
           text="Text Size"
-          options={options}
+          options={fontSizeOptions}
           onChange={onFontSizeChange}
         />
       </div>
@@ -188,7 +188,7 @@ export const EditorPanel = ({ mobile }) => {
           button
           basic
           text="Text Size"
-          options={options}
+          options={fontSizeOptions}
           onChange={onFontSizeChange}
         />
       </Button.Group>

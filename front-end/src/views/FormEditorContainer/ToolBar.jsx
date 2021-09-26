@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Segment, List, Popup, Dropdown } from "semantic-ui-react";
 import cloneDeep from "lodash/cloneDeep";
-import { onToolDragStop, onToolKeyDown, onToolClick, onLabelEdit } from "utils";
+import { onToolDragStop, onToolDelete, onToolClick, onLabelEdit } from "utils";
 import { tools } from "utils/tools";
 import { ToolStore } from "contexts/toolsContext";
 import { EditorTool } from "components";
@@ -19,7 +19,7 @@ export const ToolBar = ({ mobile = false }) => {
       key: counter,
       toolId: counter,
       onToolDragStop: onToolDragStop,
-      onToolKeyDown: onToolKeyDown,
+      onToolDelete: onToolDelete,
       onToolClick: onToolClick,
       onLabelEdit: onLabelEdit,
     };

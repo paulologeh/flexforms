@@ -40,7 +40,7 @@ export const onToolDragStop = (
   }
 };
 
-export const onToolKeyDown = (toolId, toolStore, updateToolStore) => {
+export const onToolDelete = (toolId, toolStore, updateToolStore) => {
   let oldToolStore = cloneDeep(toolStore);
   oldToolStore.allToolProps = oldToolStore.allToolProps.filter(
     (obj) => obj.toolId !== toolId

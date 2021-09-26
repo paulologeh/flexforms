@@ -7,7 +7,7 @@ export const EditorTool = ({
   props,
   toolId,
   onToolDragStop,
-  onToolKeyDown,
+  onToolDelete,
   onToolClick,
   onLabelEdit,
 }) => {
@@ -16,6 +16,7 @@ export const EditorTool = ({
   const [italic, setItalic] = useState(false);
   const [underline, setUnderline] = useState(false);
   const [textSize, setTextSize] = useState(14);
+  const [labelState, setLabelState] = useState("");
 
   const handleClick = (event) => {
     onToolClick(toolId, toolStore, updateToolStore);
@@ -26,8 +27,12 @@ export const EditorTool = ({
   };
 
   const handleKeys = (event) => {
+    console.debug(`Key Pressed ${event.keyCode}`);
     if (event.keyCode === 8 || event.keyCode === 46) {
-      onToolKeyDown(toolId, toolStore, updateToolStore);
+      console.log(`labelState is ${labelState}`);
+      // callback label state, if in Input state do not delete
+      if (labelState === "text") return;
+      onToolDelete(toolId, toolStore, updateToolStore);
     }
   };
 
@@ -40,6 +45,7 @@ export const EditorTool = ({
   useEffect(() => {
     for (let i in toolStore.allToolProps) {
       if (toolId !== toolStore.allToolProps[i].toolId) continue;
+
       if (bold !== toolStore.allToolProps[i].bold) {
         setBold(toolStore.allToolProps[i].bold);
       }
@@ -61,7 +67,6 @@ export const EditorTool = ({
   const getX = () => {
     for (let i in toolStore.allToolProps) {
       if (toolId === toolStore.allToolProps[i].toolId) {
-        console.log("x is", toolStore.allToolProps[i].x);
         return toolStore.allToolProps[i].x;
       }
     }
@@ -72,7 +77,6 @@ export const EditorTool = ({
   const getY = () => {
     for (let i in toolStore.allToolProps) {
       if (toolId === toolStore.allToolProps[i].toolId) {
-        console.log("y is", toolStore.allToolProps[i].y);
         return toolStore.allToolProps[i].y;
       }
     }
@@ -96,6 +100,8 @@ export const EditorTool = ({
         <Component
           {...props}
           save={(value) => handleSave(value)}
+          currentState={(value) => setLabelState(value)}
+          disableKeys={false}
           bold={bold}
           italic={italic}
           underline={underline}

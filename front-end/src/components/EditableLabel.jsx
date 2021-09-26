@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 export const EditableLabel = ({
   initialValue,
   save,
+  currentState,
   disableKeys,
   inputClass,
   labelClass,
@@ -24,6 +25,11 @@ export const EditableLabel = ({
       textInput.current.focus();
     }
   }, [view, textInput]);
+
+  useEffect(() => {
+    currentState(view);
+    // eslint-disable-next-line
+  }, [view]);
 
   const keyUp = (e) => {
     if (disableKeys === true) {
@@ -46,7 +52,7 @@ export const EditableLabel = ({
     return (
       <span
         className={labelClass !== undefined ? labelClass : ""}
-        onClick={(e) => {
+        onDoubleClick={(e) => {
           setView("text");
         }}
         onTouchEnd={(e) => {
