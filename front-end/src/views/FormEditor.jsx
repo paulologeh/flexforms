@@ -32,7 +32,7 @@ const FormEditorView = () => {
           <Media at="mobile">
             <EditorMenuMobile toolBar={<ToolBar mobile={true} />} />
             <EditorPanel mobile={true} />
-            <Canvas height={320} />
+            <Canvas />
           </Media>
           <Media greaterThan="mobile">
             <EditorMenuDesktop />
@@ -48,7 +48,7 @@ const FormEditorView = () => {
               <Grid.Column width={2} style={{ maxWidth: 115, minWidth: 100 }}>
                 <ToolBar mobile={false} />
               </Grid.Column>
-              <Grid.Column width={10} style={{ maxWidth: 600 }}>
+              <Grid.Column width={10} style={{ minWidth: 600 }}>
                 <Canvas />
               </Grid.Column>
             </Grid>

@@ -1,74 +1,135 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Segment, Header, Input } from "semantic-ui-react";
+import { Grid, Segment, Header } from "semantic-ui-react";
+import { formData } from "./FormViewerContainer/example";
+import { tools } from "utils/tools";
+import { createMedia } from "@artsy/fresnel";
 
-const allTools = [
-  {
-    key: 0,
-    tool: "GeneralInput",
-    tool_id: 0,
-    x: 187,
-    y: 22,
+const AppMedia = createMedia({
+  breakpoints: {
+    mobile: 320,
+    tablet: 768,
+    computer: 992,
+    largeScreen: 1200,
+    widescreen: 1920,
   },
-  {
-    key: 1,
-    tool: "GeneralInput",
-    tool_id: 1,
-    x: 188,
-    y: 94,
-  },
-];
+});
+const mediaStyles = AppMedia.createMediaStyle();
+const { Media, MediaContextProvider } = AppMedia;
 
-const GeneralInput = ({ x, y }) => {
-  return <Input style={{ position: "absolute", top: y, left: x }} />;
+const StaticLabel = (props) => {
+  return <span style={props.style}>{props.value}</span>;
 };
 
 const FormViewer = () => {
   const [toolState, setToolState] = useState([]);
-  const [formTitle] = useState("Form Title");
+  const [formTitle, setFormTitle] = useState("No Title");
 
   useEffect(() => {
+    if ("title" in formData) setFormTitle(formData.title);
+
+    let allTools = formData.allToolProps;
     let newToolState = [];
     for (let i = 0; i < allTools.length; i++) {
-      newToolState.push(
-        React.createElement(GeneralInput, {
-          key: i,
-          x: allTools[i].x,
-          y: allTools[i].y,
-        })
-      );
+      let tool = null;
+      // Different logic for labels
+      if (allTools[i].tool === "static-label") {
+        tool = {};
+        tool.component = StaticLabel;
+        tool.props = { value: allTools[i].label };
+      } else {
+        for (let j = 0; j < tools.length; j++) {
+          if (tools[j].name === allTools[i].tool) {
+            tool = tools[j];
+            break;
+          }
+        }
+      }
+
+      if (tool === null) {
+        continue;
+      }
+
+      console.log(tool);
+
+      tool.props.key = i; // key
+      let props = {
+        ...tool.props,
+        style: {
+          position: "absolute",
+          top: allTools[i].y,
+          left: allTools[i].x,
+          fontWeight: allTools[i].bold ? "bold" : "normal",
+          fontStyle: allTools[i].italic ? "italic" : "normal",
+          textDecoration: allTools[i].underline ? "underline" : "",
+          fontSize: allTools[i].textSize,
+        },
+      };
+      newToolState.push(React.createElement(tool.component, props));
     }
     setToolState(newToolState);
   }, []);
 
   return (
     <div>
-      <Grid
-        style={{ overflow: "auto" }}
-        textAlign="center"
-        padded
-        verticalAlign="middle"
-      >
-        <Grid.Column style={{ maxWidth: 700, minWidth: 700 }}>
-          <Grid.Row>
-            <Segment secondary>
-              <Header as="h2">{formTitle}</Header>
-            </Segment>
-          </Grid.Row>
-          <Grid.Row>
-            <Segment
-              style={{
-                position: "relative",
-                height: "900px",
-                maxHeight: "900px",
-                minHeight: "700px",
-                marginTop: 10,
-              }}
-            >
-              {toolState}
-            </Segment>
-          </Grid.Row>
-        </Grid.Column>
-      </Grid>
+      <style>{mediaStyles}</style>
+      <MediaContextProvider>
+        <Media at="mobile">
+          <Grid
+            style={{ overflow: "auto" }}
+            textAlign="center"
+            padded
+            verticalAlign="middle"
+          >
+            <Grid.Column>
+              <Grid.Row>
+                <Segment secondary>
+                  <Header as="h2">{formTitle}</Header>
+                </Segment>
+              </Grid.Row>
+              <Grid.Row width={10}>
+                <Segment
+                  style={{
+                    position: "relative",
+                    height: 800,
+                    marginTop: 10,
+                    minWidth: 600,
+                  }}
+                >
+                  {toolState}
+                </Segment>
+              </Grid.Row>
+            </Grid.Column>
+          </Grid>
+        </Media>
+        <Media greaterThan="mobile">
+          <Grid
+            style={{ overflow: "auto" }}
+            textAlign="center"
+            padded
+            verticalAlign="middle"
+          >
+            <Grid.Column width={10}>
+              <Grid.Row>
+                <Segment secondary>
+                  <Header as="h2">{formTitle}</Header>
+                </Segment>
+              </Grid.Row>
+              <Grid.Row>
+                <Segment
+                  style={{
+                    position: "relative",
+                    height: 800,
+                    marginTop: 10,
+                    minWidth: 600,
+                  }}
+                >
+                  {toolState}
+                </Segment>
+              </Grid.Row>
+            </Grid.Column>
+          </Grid>
+        </Media>
+      </MediaContextProvider>
     </div>
   );
 };
