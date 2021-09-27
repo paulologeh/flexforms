@@ -1,14 +1,5 @@
-import React from "react";
-import { Input, Checkbox, Radio, Form, TextArea } from "semantic-ui-react";
+import { Input, Checkbox, Radio, TextArea } from "semantic-ui-react";
 import { EditableLabel } from "components/EditableLabel";
-
-const Textarea = () => {
-  return (
-    <Form>
-      <TextArea />
-    </Form>
-  );
-};
 
 export const tools = [
   {
@@ -51,8 +42,9 @@ export const tools = [
   {
     icon: "keyboard outline",
     name: "text-area",
-    component: Textarea,
+    component: TextArea,
+    props: {},
   },
-  { icon: "dot circle outline", name: "radio", component: Radio },
+  { icon: "dot circle outline", name: "radio", component: Radio, props: {} },
   // { icon: "clone outline", name: "panel" },
 ];
