@@ -32,7 +32,12 @@ export const tools = [
     component: Input,
     props: { type: "date" },
   },
-  { icon: "check square outline", name: "checkbox", component: Checkbox },
+  {
+    icon: "check square outline",
+    name: "checkbox",
+    component: Checkbox,
+    props: {},
+  },
   {
     icon: "amilia",
     name: "static-label",
@@ -45,6 +50,10 @@ export const tools = [
     component: TextArea,
     props: {},
   },
-  { icon: "dot circle outline", name: "radio", component: Radio, props: {} },
-  // { icon: "clone outline", name: "panel" },
+  {
+    icon: "dot circle outline",
+    name: "radio",
+    component: Radio,
+    props: {},
+  },
 ];
