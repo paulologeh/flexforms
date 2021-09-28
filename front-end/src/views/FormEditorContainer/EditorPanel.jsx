@@ -19,6 +19,7 @@ export const EditorPanel = ({ mobile }) => {
   const [future, setFuture] = useState([]);
   const [undo, setUndo] = useState(false);
   const [redo, setRedo] = useState(false);
+  const [fontSize, setFontSize] = useState(null);
 
   const onTrash = (event) => {
     let oldToolStore = cloneDeep(toolStore);
@@ -136,6 +137,20 @@ export const EditorPanel = ({ mobile }) => {
     setRedo(false);
   };
 
+  const handleClick = (event, data) => {
+    let selectedTool = toolStore.selectedTool;
+    let selectedFontSize = null;
+    for (let i = 0; i < toolStore.allToolProps.length; i++) {
+      if (toolStore.allToolProps[i].toolId === selectedTool) {
+        selectedFontSize = toolStore.allToolProps[i].textSize;
+        break;
+      }
+    }
+    if (selectedFontSize !== null) {
+      setFontSize(selectedFontSize);
+    }
+  };
+
   useEffect(() => {
     if (undo || redo) return;
 
@@ -169,6 +184,8 @@ export const EditorPanel = ({ mobile }) => {
           text="Text Size"
           options={fontSizeOptions}
           onChange={onFontSizeChange}
+          onClick={handleClick}
+          value={fontSize}
         />
       </div>
     );
@@ -190,6 +207,8 @@ export const EditorPanel = ({ mobile }) => {
           text="Text Size"
           options={fontSizeOptions}
           onChange={onFontSizeChange}
+          onClick={handleClick}
+          value={fontSize}
         />
       </Button.Group>
     );
