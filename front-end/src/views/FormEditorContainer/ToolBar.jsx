@@ -37,6 +37,8 @@ export const ToolBar = ({ mobile = false }) => {
 
     // update tools context
     if ("component" in toolProps) {
+      delete toolProps.props.onChange; // remove onChange handlers
+
       oldToolStore.allTools.push(React.createElement(EditorTool, toolProps));
       oldToolStore.allToolProps.push({
         key: counter,

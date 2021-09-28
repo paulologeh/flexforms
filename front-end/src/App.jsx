@@ -11,11 +11,6 @@ import { Home, FormEditorView, FormViewer } from "views";
 import { NotFound } from "components/NotFound";
 
 const App = () => {
-  useEffect(() => {
-    console.clear();
-    // eslint-disable-next-line
-  }, []);
-
   return (
     <Switch>
       <AppRoute exact path="/" component={Home} />
