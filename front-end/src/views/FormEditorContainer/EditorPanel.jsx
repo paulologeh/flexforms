@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Button, Dropdown } from "semantic-ui-react";
+import { Button, Dropdown, Popup } from "semantic-ui-react";
 import { ToolStore } from "contexts/toolsContext";
 import cloneDeep from "lodash/cloneDeep";
 import _ from "lodash";
@@ -194,10 +194,34 @@ export const EditorPanel = ({ mobile }) => {
   const renderDesktop = () => {
     return (
       <Button.Group basic>
-        <Button icon="trash" onClick={onTrash}></Button>
-        <Button icon="refresh" onClick={onRefresh}></Button>
-        <Button icon="redo" onClick={onRedo}></Button>
-        <Button icon="undo" onClick={onUndo}></Button>
+        <Popup
+          content="Delete"
+          mouseEnterDelay={500}
+          mouseLeaveDelay={500}
+          on="hover"
+          trigger={<Button icon="trash" onClick={onTrash}></Button>}
+        />
+        <Popup
+          content="Refresh"
+          mouseEnterDelay={500}
+          mouseLeaveDelay={500}
+          on="hover"
+          trigger={<Button icon="refresh" onClick={onRefresh}></Button>}
+        />
+        <Popup
+          content="Redo"
+          mouseEnterDelay={500}
+          mouseLeaveDelay={500}
+          on="hover"
+          trigger={<Button icon="redo" onClick={onRedo}></Button>}
+        />
+        <Popup
+          content="Undo"
+          mouseEnterDelay={500}
+          mouseLeaveDelay={500}
+          on="hover"
+          trigger={<Button icon="undo" onClick={onUndo}></Button>}
+        />
         <Button icon="bold" onClick={onBold}></Button>
         <Button icon="italic" onClick={onItalic}></Button>
         <Button icon="underline" onClick={onUnderline}></Button>
