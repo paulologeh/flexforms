@@ -12,7 +12,6 @@ export const ToolBar = ({ mobile = false }) => {
   const [counter, setCounter] = useState(0);
 
   const handleClick = (e, data) => {
-    console.log(data);
     // send to tools context
     let oldToolStore = cloneDeep(toolStore);
     let toolProps = {
