@@ -1,24 +1,57 @@
-import React from "react";
-import { Switch } from "react-router-dom";
-import { AppRoute } from "utils";
+import React, { useState } from "react";
+
+// Handle console logs
+import "utils/dropConsole";
 
 //Css files
 import "./App.css";
 
-// Views
-import { Home, FormEditorView, FormViewer } from "views";
+// ROUTER
+import { BrowserRouter } from "react-router-dom";
+import { RouterConfig } from "navigation/RouterConfig";
 
-import { NotFound } from "components/NotFound";
+// Global States
+import { ToolStoreProvider } from "contexts/toolsContext";
+import { FormStoreProvider } from "contexts/formContext";
+import { MediaContextProvider, mediaStyles } from "styles/mediaStyles";
+
+// Theming
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "styles/globalStyles";
+import { lightTheme, darkTheme } from "styles/Theme";
+import { ThemeSwitch } from "components/ThemeSwitch";
+
+import { Sticky } from "semantic-ui-react";
 
 const App = () => {
+  const [darkState, setDarkState] = useState(false);
+  const handleThemeChange = () => {
+    setDarkState(!darkState);
+    console.debug("theme=", darkState ? "dark" : "light");
+  };
+
   return (
-    <Switch>
-      <AppRoute exact path="/" component={Home} />
-      <AppRoute exact path="/home" component={Home} />
-      <AppRoute exact path="/formeditor" component={FormEditorView} />
-      <AppRoute exact path="/formviewer" component={FormViewer} />
-      <AppRoute component={NotFound} />
-    </Switch>
+    <>
+      <ThemeProvider theme={darkState ? darkTheme : lightTheme}>
+        <GlobalStyles />
+        <MediaContextProvider>
+          <style>{mediaStyles}</style>
+          <ToolStoreProvider>
+            <FormStoreProvider>
+              <BrowserRouter>
+                <Sticky>
+                  <ThemeSwitch
+                    darkState={darkState}
+                    handleThemeChange={handleThemeChange}
+                  />
+                </Sticky>
+                <RouterConfig />
+              </BrowserRouter>
+            </FormStoreProvider>
+          </ToolStoreProvider>
+        </MediaContextProvider>
+      </ThemeProvider>
+    </>
   );
 };
 
