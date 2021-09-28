@@ -2,21 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Grid, Segment, Header, Button } from "semantic-ui-react";
 import { formData } from "./FormViewerContainer/example";
 import { tools } from "utils/tools";
-import { createMedia } from "@artsy/fresnel";
-import { FormStoreProvider } from "contexts/formContext";
 import { ViewerTool } from "components";
-
-const AppMedia = createMedia({
-  breakpoints: {
-    mobile: 320,
-    tablet: 768,
-    computer: 992,
-    largeScreen: 1200,
-    widescreen: 1920,
-  },
-});
-const mediaStyles = AppMedia.createMediaStyle();
-const { Media, MediaContextProvider } = AppMedia;
+import { Media } from "styles/mediaStyles";
 
 const StaticLabel = (props) => {
   return <span style={props.style}>{props.value}</span>;
@@ -71,73 +58,68 @@ const FormViewer = () => {
   }, []);
 
   return (
-    <FormStoreProvider>
-      <div>
-        <style>{mediaStyles}</style>
-        <MediaContextProvider>
-          <Media at="mobile">
-            <Grid
-              style={{ overflow: "auto" }}
-              textAlign="center"
-              padded
-              verticalAlign="middle"
-            >
-              <Grid.Column>
-                <Grid.Row>
-                  <Segment secondary>
-                    <Header as="h2">{formTitle}</Header>
-                  </Segment>
-                </Grid.Row>
-                <Grid.Row width={10}>
-                  <Segment
-                    style={{
-                      position: "relative",
-                      height: 800,
-                      marginTop: 10,
-                      minWidth: 600,
-                    }}
-                  >
-                    {toolState}
-                  </Segment>
-                </Grid.Row>
-                <br />
-                <Button positive>Submit</Button>
-              </Grid.Column>
-            </Grid>
-          </Media>
-          <Media greaterThan="mobile">
-            <Grid
-              style={{ overflow: "auto" }}
-              textAlign="center"
-              padded
-              verticalAlign="middle"
-            >
-              <Grid.Column width={10}>
-                <Grid.Row>
-                  <Segment secondary>
-                    <Header as="h2">{formTitle}</Header>
-                  </Segment>
-                </Grid.Row>
-                <Grid.Row>
-                  <Segment
-                    style={{
-                      position: "relative",
-                      height: 800,
-                      marginTop: 10,
-                      minWidth: 600,
-                    }}
-                  >
-                    {toolState}
-                  </Segment>
-                </Grid.Row>
-                <br />
-                <Button positive>Submit</Button>
-              </Grid.Column>
-            </Grid>
-          </Media>
-        </MediaContextProvider>
-      </div>
-    </FormStoreProvider>
+    <div>
+      <Media at="mobile">
+        <Grid
+          style={{ overflow: "auto" }}
+          textAlign="center"
+          padded
+          verticalAlign="middle"
+        >
+          <Grid.Column>
+            <Grid.Row>
+              <Segment secondary>
+                <Header as="h2">{formTitle}</Header>
+              </Segment>
+            </Grid.Row>
+            <Grid.Row width={10}>
+              <Segment
+                style={{
+                  position: "relative",
+                  height: 800,
+                  marginTop: 10,
+                  minWidth: 600,
+                }}
+              >
+                {toolState}
+              </Segment>
+            </Grid.Row>
+            <br />
+            <Button positive>Submit</Button>
+          </Grid.Column>
+        </Grid>
+      </Media>
+      <Media greaterThan="mobile">
+        <Grid
+          style={{ overflow: "auto" }}
+          textAlign="center"
+          padded
+          verticalAlign="middle"
+        >
+          <Grid.Column width={10}>
+            <Grid.Row>
+              <Segment secondary>
+                <Header as="h2">{formTitle}</Header>
+              </Segment>
+            </Grid.Row>
+            <Grid.Row>
+              <Segment
+                style={{
+                  position: "relative",
+                  height: 800,
+                  marginTop: 10,
+                  minWidth: 600,
+                }}
+              >
+                {toolState}
+              </Segment>
+            </Grid.Row>
+            <br />
+            <Button positive>Submit</Button>
+          </Grid.Column>
+        </Grid>
+      </Media>
+    </div>
   );
 };
 
