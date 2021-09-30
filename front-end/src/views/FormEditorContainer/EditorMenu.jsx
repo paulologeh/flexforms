@@ -2,7 +2,11 @@ import React from "react";
 import { Menu, Dropdown, Image, Icon } from "semantic-ui-react";
 import logo from "assets/images/FlexFormsLogoNoText.png";
 
-export const EditorMenuMobile = ({ toolBar, editorPanel }) => {
+export const EditorMenuMobile = ({ toolBar, editorPanel, handlePublish }) => {
+  const handleClick = () => {
+    handlePublish(true);
+  };
+
   return (
     <Menu>
       <Menu.Item>
@@ -25,7 +29,7 @@ export const EditorMenuMobile = ({ toolBar, editorPanel }) => {
             <span className="text">Options</span>
             <Dropdown.Menu>
               <Dropdown.Item disabled>Save</Dropdown.Item>
-              <Dropdown.Item>Publish Form</Dropdown.Item>
+              <Dropdown.Item onClick={handleClick}>Publish Form</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown.Item>
           <Dropdown.Item>Help</Dropdown.Item>
@@ -37,7 +41,11 @@ export const EditorMenuMobile = ({ toolBar, editorPanel }) => {
   );
 };
 
-export const EditorMenuDesktop = () => {
+export const EditorMenuDesktop = ({ handlePublish }) => {
+  const handleClick = () => {
+    handlePublish(true);
+  };
+
   return (
     <Menu secondary>
       <Menu.Item>
@@ -57,7 +65,7 @@ export const EditorMenuDesktop = () => {
       <Dropdown item simple text="Options">
         <Dropdown.Menu>
           <Dropdown.Item disabled>Save</Dropdown.Item>
-          <Dropdown.Item>Publish Form</Dropdown.Item>
+          <Dropdown.Item onClick={handleClick}>Publish Form</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
       <Menu.Item as="a">

@@ -39,12 +39,15 @@ const App = () => {
           <ToolStoreProvider>
             <FormStoreProvider>
               <BrowserRouter>
-                <Sticky>
-                  <ThemeSwitch
-                    darkState={darkState}
-                    handleThemeChange={handleThemeChange}
-                  />
-                </Sticky>
+                {/* disabling dark mode. Will complete later */}
+                {darkState && (
+                  <Sticky style={{}}>
+                    <ThemeSwitch
+                      darkState={darkState}
+                      handleThemeChange={handleThemeChange}
+                    />
+                  </Sticky>
+                )}
                 <RouterConfig />
               </BrowserRouter>
             </FormStoreProvider>

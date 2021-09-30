@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from "semantic-ui-react";
 import "../App.css";
 import {
@@ -7,19 +7,30 @@ import {
   ToolBar,
   EditorMenuDesktop,
   EditorMenuMobile,
+  Publisher,
 } from "./FormEditorContainer";
 import { Media } from "styles/mediaStyles";
 
 const FormEditorView = () => {
+  const [publishing, setPublishing] = useState(false);
+
   return (
     <>
       <Media at="mobile">
-        <EditorMenuMobile toolBar={<ToolBar mobile={true} />} />
+        <EditorMenuMobile
+          toolBar={<ToolBar mobile={true} />}
+          handlePublish={(value) => setPublishing(value)}
+        />
         <EditorPanel mobile={true} />
         <Canvas />
       </Media>
       <Media greaterThan="mobile">
-        <EditorMenuDesktop />
+        <EditorMenuDesktop handlePublish={(value) => setPublishing(value)} />
+        <Publisher
+          publishing={publishing}
+          openPublishing={() => setPublishing(true)}
+          closePublishing={() => setPublishing(false)}
+        />
         <Grid
           style={{ overflow: "auto" }}
           textAlign="center"

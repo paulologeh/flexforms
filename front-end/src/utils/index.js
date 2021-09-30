@@ -4,3 +4,5 @@ export {
   onToolClick,
   onLabelEdit,
 } from "./toolEvents";
+
+export { sleep } from "./sleep";
