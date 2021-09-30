@@ -8,19 +8,17 @@ from flask_restful import Api
 from api.forms import SavedForms, FilledForms
 
 
-
-
-
 def create_app():
     app = Flask(__name__)
     app.debug = config.get('APP', 'DEBUG')
     app.config['CORS_HEADERS'] = 'Content-Type'
     api = Api(app)
+
     CORS(app, resources={'/*': {'origins': ['.*']} })
 
     # API Resource routing
-    api.add_resource(FilledForms, "/api/v1/filledforms/<string:key>")
-    api.add_resource(SavedForms, '/api/v1/savedforms/<string:key>')
+    api.add_resource(FilledForms, '/api/v1/filledforms')
+    api.add_resource(SavedForms, '/api/v1/savedforms')
 
     return app
 
@@ -44,4 +42,5 @@ if __name__ == '__main__':
                         datefmt='%Y%m%d-%H:%M:%S')
     logger = logging.getLogger(__name__)
     app = create_app()
+    
     app.run(port=config.get('APP', 'PORT'), threaded=True)

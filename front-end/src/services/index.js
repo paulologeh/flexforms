@@ -1,1 +1,1 @@
-export { addNewForm } from "./savedFormsService";
+export { addNewForm, getForm } from "./savedFormsService";
