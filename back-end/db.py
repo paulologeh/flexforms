@@ -30,7 +30,7 @@ def add_form(kwargs):
     - "email"
     - "uid"
     """
-    logger.debug("Received input form: %s", kwargs)
+    logger.debug("Received input form: %s" % kwargs)
     form_doc = {}
     for key in kwargs.keys():
         form_doc[key] = kwargs[key]
@@ -39,3 +39,13 @@ def add_form(kwargs):
     db = db_client["flexforms"]
     doc_ref = db["saved_forms"]
     return doc_ref.insert_one(form_doc)
+
+
+def get_form(key):
+    """
+    Retrieves a form from the forms collection given a uuid
+    """
+    logger.debug("Received key %s" % key)
+    db = db_client["flexforms"]
+    doc_ref = db["saved_forms"]
+    return doc_ref.find({'uuid': key})
