@@ -15,7 +15,7 @@ config_path = os.path.dirname(__file__) + '/../config.ini'
 config = configparser.ConfigParser()
 config.read(config_path)
 logger = logging.getLogger(__name__)
-BASE_URI = os.environ["BASE_URI"]
+FRONT_END_URI = os.environ["FRONT_END_URI"]
 
 
 class SavedForms(Resource):
@@ -60,8 +60,8 @@ class SavedForms(Resource):
             viewer_key = self.args["uuid"]
             time.sleep(2)
        
-            viewer_link = f"{BASE_URI}/formviewer?uuid={viewer_key}"
-            response_link = f"{BASE_URI}/formresponse?uuid={edit_key}"
+            viewer_link = f"{FRONT_END_URI}/formviewer?uuid={viewer_key}"
+            response_link = f"{FRONT_END_URI}/formresponse?uuid={edit_key}"
             sender = os.environ["MAIL_DEFAULT_SENDER"]
             recipient = self.args["email"]
             message = f"""
