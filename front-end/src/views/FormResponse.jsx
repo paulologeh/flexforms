@@ -27,7 +27,8 @@ const FormResponse = () => {
       setData(response.data.data);
     }
     fetchFormData();
-  });
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     console.log("data", data);
@@ -62,7 +63,7 @@ const FormResponse = () => {
 
       for (const key in keys.sort()) {
         if (keys[key] in data[i].data) {
-          cols.push(data[i].data[keys[key]]);
+          cols.push(data[i].data[keys[key]].toString());
         } else {
           cols.push(" ");
         }
