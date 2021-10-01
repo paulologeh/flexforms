@@ -18,7 +18,6 @@ export const ViewerTool = ({ component: Component, props, style, toolId }) => {
       oldFormStore[toolId] = data.radio;
     }
 
-    console.debug(oldFormStore);
     updateFormStore(oldFormStore);
   };
 

@@ -4,7 +4,7 @@ import time
 import logging
 import configparser
 from flask_restful import Resource, reqparse
-from db import add_form, get_form
+from db import add_form, get_form, add_form_response, get_edit_key, get_form_response
 from .utils import send_email
 
 
@@ -30,7 +30,6 @@ class SavedForms(Resource):
 
         try:
             results = list(get_form(self.args["uuid"]))
-            print(results)
             if len (results) == 1:
                 response = results[0]
                 del response["_id"]
@@ -61,7 +60,7 @@ class SavedForms(Resource):
        
             editor_link = f"http://localhost:3000/formeditor?uuid={edit_key}"
             viewer_link = f"http://localhost:3000/formviewer?uuid={viewer_key}"
-            response_link = f"http://localhost:3000/formresponse/{edit_key}"
+            response_link = f"http://localhost:3000/formresponse?uuid={edit_key}"
             sender = "paulologeh@outlook.com"
             recipient = self.args["email"]
             message = f"""
@@ -93,8 +92,8 @@ class SavedForms(Resource):
                 'response_link': response_link ,
                 }, 201
         except Exception as e:
+            logger.error(e)
             return {'error': str(e)}, 409
-
 
     def put(self, key):
         pass
@@ -106,10 +105,40 @@ class SavedForms(Resource):
 
 class FilledForms(Resource):
     def __init__(self) -> None:
+        self.req_parse = reqparse.RequestParser()
         super().__init__()
 
-    def get():
-        pass
+    def get(self):
+        self.req_parse.add_argument('uuid', type=str, required=True)
+        self.args = self.req_parse.parse_args()
 
-    def post():
-        pass
+        try:
+            results = list(get_form_response(self.args['uuid']))
+            if len(results) != 0:
+                return {'data': results}, 200
+            else:
+                return {'error':'invalid arg'}, 404
+        except Exception as e:
+            logger.error(e)
+            return {'error': str(e)}, 500
+            
+    def post(self):
+        self.req_parse.add_argument('uuid', type=str, required=True)
+        self.req_parse.add_argument('data', type=dict, required=True)
+        self.args = self.req_parse.parse_args()
+
+        try:
+            edit_keys = list(get_edit_key(self.args['uuid']))
+            if len(edit_keys) == 1:
+                edit_key = edit_keys[0]['edit_key']
+                add_form_response(edit_key, self.args['data'])
+                return {'message':'Created'}, 201
+            else:
+                return {'error': 'internal server error'}, 500
+        except Exception as e:
+            logger.error(e)
+            return {'error': str(e)}, 409
+
+        
+
+        
