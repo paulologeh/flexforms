@@ -1,10 +1,12 @@
 import os
 import logging
 import configparser
+from dotenv import load_dotenv
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 
+load_dotenv()
 # CONFIG SETUP
 config_path = os.path.dirname(__file__) + '/../config.ini'
 config = configparser.ConfigParser()
@@ -17,8 +19,6 @@ def expect(input, expectedType, field):
         return input
     raise AssertionError("Invalid input for type", field)
 
-
-
 def send_email(sender, recipient, message, subject):
 
     message = Mail(
@@ -28,7 +28,6 @@ def send_email(sender, recipient, message, subject):
         html_content=message)
     try:
         sendgrid_client = SendGridAPIClient(os.environ['SENDGRID_API_KEY'])
-        # sendgrid_client = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
         response = sendgrid_client.send(message)
         logger.debug(response.status_code)
         logger.debug(response.body)

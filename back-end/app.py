@@ -5,7 +5,10 @@ import configparser
 from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
+from dotenv import load_dotenv
 from api.forms import SavedForms, FilledForms
+
+load_dotenv()
 
 
 def create_app():
@@ -32,7 +35,6 @@ if __name__ == '__main__':
 
     pid = os.getpid()
     log_file = f"{log_path}/app.log"
-    #  log_file = f"{log_path}/app{pid}.log"
 
     config = configparser.ConfigParser()
     config.read('config.ini')
