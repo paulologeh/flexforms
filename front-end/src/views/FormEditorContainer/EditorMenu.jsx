@@ -32,7 +32,15 @@ export const EditorMenuMobile = ({ toolBar, editorPanel, handlePublish }) => {
               <Dropdown.Item onClick={handleClick}>Publish Form</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown.Item>
-          <Dropdown.Item>Help</Dropdown.Item>
+          <Dropdown.Item
+            onClick={() =>
+              window.open(
+                "https://drive.google.com/file/d/1-fiCEQaMl37x5l5KfxWoYOSnvwNZeoKk/view?usp=sharing"
+              )
+            }
+          >
+            Help
+          </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
       {toolBar}
@@ -68,7 +76,14 @@ export const EditorMenuDesktop = ({ handlePublish }) => {
           <Dropdown.Item onClick={handleClick}>Publish Form</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-      <Menu.Item as="a">
+      <Menu.Item
+        as="a"
+        onClick={() =>
+          window.open(
+            "https://drive.google.com/file/d/1-fiCEQaMl37x5l5KfxWoYOSnvwNZeoKk/view?usp=sharing"
+          )
+        }
+      >
         <Icon name="help" />
         Help
       </Menu.Item>
