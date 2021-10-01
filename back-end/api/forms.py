@@ -56,9 +56,8 @@ class SavedForms(Resource):
             add_form(self.args)
             edit_key = self.args["edit_key"]
             viewer_key = self.args["uuid"]
-            time.sleep(3)
+            time.sleep(2)
        
-            editor_link = f"http://localhost:3000/formeditor?uuid={edit_key}"
             viewer_link = f"http://localhost:3000/formviewer?uuid={viewer_key}"
             response_link = f"http://localhost:3000/formresponse?uuid={edit_key}"
             sender = "paulologeh@outlook.com"
@@ -67,13 +66,12 @@ class SavedForms(Resource):
             <p>
             Hi {self.args["owner"]},<br></br>
             Your form has been successfully published.<br></br>
-            People can view the form using the viewer link and you can make
-            changes to the forms using the editor link.<br></br>
+            People can view the form using the viewer link.<br></br>
             You can view your responses to the form in the response link.<br></br>
             This form will expire in 7 days and all links will stop working
             after this.<br></br><br></br>
             Viewer Link: {viewer_link}<br></br>
-            Editor Link: {editor_link}<br></br>
+        
             Response Link: {response_link}<br></br><br></br>
             Kind Regards,<br></br>
             Flex Forms Team
@@ -87,19 +85,12 @@ class SavedForms(Resource):
 
             return {
                 'message': 'Created',
-                'editor_link': editor_link,
                 'viewer_link': viewer_link,
                 'response_link': response_link ,
                 }, 201
         except Exception as e:
             logger.error(e)
             return {'error': str(e)}, 409
-
-    def put(self, key):
-        pass
-
-    def delete(self, key):
-        pass
 
 
 
