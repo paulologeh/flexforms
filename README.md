@@ -14,3 +14,5 @@ cat back-end/.env | xargs heroku config:set
 ```
 
 ## Front-end
+
+git subtree push --prefix front-end heroku master
