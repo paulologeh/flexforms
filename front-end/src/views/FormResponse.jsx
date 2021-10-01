@@ -86,7 +86,7 @@ const FormResponse = () => {
   return (
     <div>
       {!data && <NotFound />}
-      <Table celled>
+      <Table celled compact>
         <Table.Header>
           <Table.Row>
             {headers &&
