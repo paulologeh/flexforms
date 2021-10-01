@@ -12,7 +12,7 @@ const Published = () => {
 
   return (
     <Segment placeholder>
-      {toolStore.viewerLink && toolStore.editorLink && toolStore.responseLink && (
+      {toolStore.viewerLink && toolStore.responseLink && (
         <>
           <Header icon>
             <Icon name="thumbs up" />
@@ -21,8 +21,7 @@ const Published = () => {
           <Message positive>
             <Header>Your Form has been published</Header>
             <br />
-            People can view the form using the viewer link and you can make
-            changes to the forms using the editor link. You can view your
+            People can view the form using the viewer link. You can view your
             responses to the form in the response link.
             <br />
             <br />
@@ -36,11 +35,6 @@ const Published = () => {
             </span>
             <br />
             <span>
-              Editor Link:{" "}
-              <a href={toolStore.editorLink}>{toolStore.editorLink}</a>
-            </span>
-            <br />
-            <span>
               Response Link:
               <a href={toolStore.responseLink}>{toolStore.responseLink}</a>
             </span>
@@ -50,22 +44,19 @@ const Published = () => {
           </Message>
         </>
       )}
-      {!toolStore.viewerLink &&
-        !toolStore.editorLink &&
-        !toolStore.responseLink && (
-          <>
-            <Header icon>
-              <Icon name="thumbs down" />
-              Error!
-            </Header>
-            <Message negative>
-              <Header>Something went wrong</Header>
-              <br />
-              We are unable to get your details right now. Please try again
-              later.
-            </Message>
-          </>
-        )}
+      {!toolStore.viewerLink && !toolStore.responseLink && (
+        <>
+          <Header icon>
+            <Icon name="thumbs down" />
+            Error!
+          </Header>
+          <Message negative>
+            <Header>Something went wrong</Header>
+            <br />
+            We are unable to get your details right now. Please try again later.
+          </Message>
+        </>
+      )}
       <Button primary onClick={() => history.push(ROOT)}>
         Home
       </Button>
