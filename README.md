@@ -15,4 +15,4 @@ cat back-end/.env | xargs heroku config:set
 
 ## Front-end
 
-git subtree push --prefix front-end heroku master
+git subtree push --prefix front-end https://git.heroku.com/flexforms-frontend.git master
