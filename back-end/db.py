@@ -1,18 +1,14 @@
-import pymongo
-import configparser
+import os
 import logging
+from dotenv import load_dotenv
+from pymongo import MongoClient
 
-
-# CONFIG SETUP
-config = configparser.ConfigParser()
-config.read('config.ini')
+load_dotenv()
 logger = logging.getLogger(__name__)
 
 
 def get_db():
-    db_host = config.get('DATABASE', 'HOST')
-    db_port = config.get('DATABASE', 'PORT')
-    db_client = pymongo.MongoClient("mongodb://{}:{}/".format(db_host, db_port))
+    db_client = MongoClient(os.environ["MONGO_CLIENT"])
     return db_client
 
 

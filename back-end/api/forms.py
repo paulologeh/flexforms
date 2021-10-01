@@ -3,17 +3,19 @@ import uuid
 import time
 import logging
 import configparser
+from .utils import send_email
+from dotenv import load_dotenv
 from flask_restful import Resource, reqparse
 from db import add_form, get_form, add_form_response, get_edit_key, get_form_response
-from .utils import send_email
 
 
-
+load_dotenv()
 # CONFIG SETUP
 config_path = os.path.dirname(__file__) + '/../config.ini'
 config = configparser.ConfigParser()
 config.read(config_path)
 logger = logging.getLogger(__name__)
+BASE_URI = os.environ["BASE_URI"]
 
 
 class SavedForms(Resource):
@@ -58,9 +60,9 @@ class SavedForms(Resource):
             viewer_key = self.args["uuid"]
             time.sleep(2)
        
-            viewer_link = f"http://localhost:3000/formviewer?uuid={viewer_key}"
-            response_link = f"http://localhost:3000/formresponse?uuid={edit_key}"
-            sender = "paulologeh@outlook.com"
+            viewer_link = f"{BASE_URI}/formviewer?uuid={viewer_key}"
+            response_link = f"{BASE_URI}/formresponse?uuid={edit_key}"
+            sender = os.environ["MAIL_DEFAULT_SENDER"]
             recipient = self.args["email"]
             message = f"""
             <p>
