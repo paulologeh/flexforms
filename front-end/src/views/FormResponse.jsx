@@ -91,7 +91,7 @@ const FormResponse = () => {
           <Table.Row>
             {headers &&
               headers.map((val, i) => (
-                <Table.HeaderCell key={i}>{val}</Table.HeaderCell>
+                <Table.HeaderCell key={i}>{i}</Table.HeaderCell>
               ))}
           </Table.Row>
         </Table.Header>
