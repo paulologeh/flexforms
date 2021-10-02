@@ -22,7 +22,7 @@
     <li><a href="#about-the-project">About The Project</a>
     <li><a href="#built-with">Built With</a></li>
     </li>
-    <li><a href="#gettingstarted">Geetting Started</a></li>
+    <li><a href="#gettingstarted">Getting Started</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
