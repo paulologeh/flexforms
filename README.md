@@ -37,7 +37,7 @@ Whether its to setup a guest list or to send out birthday/wedding invites and vi
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This project was built with the following tools:
 
 - [React](https://reactjs.org/)
 - [Semantic UI](https://semantic-ui.com/)
