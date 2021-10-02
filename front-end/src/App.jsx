@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 
-// Handle console logs
-import "utils/dropConsole";
-
 //Css files
 import "./App.css";
 
