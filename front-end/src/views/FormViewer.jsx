@@ -50,6 +50,25 @@ const FormViewer = () => {
 
       let allTools = response.form_obj;
       let newToolState = [];
+      let offSet = {
+        top: Number.POSITIVE_INFINITY,
+        left: Number.POSITIVE_INFINITY,
+      };
+
+      for (let i = 0; i < allTools.length; i++) {
+        console.log(allTools[i]);
+        if (allTools[i].y < offSet.top) {
+          offSet.top = allTools[i].y;
+        }
+        if (allTools[i].x < offSet.left) {
+          offSet.left = allTools[i].x;
+        }
+      }
+
+      // removes unecessary spaces
+      offSet.top = offSet.top - 20;
+      offSet.left = offSet.left - 20;
+
       for (let i = 0; i < allTools.length; i++) {
         let toolProps = null;
         // Different logic for labels
@@ -76,8 +95,8 @@ const FormViewer = () => {
         toolProps.toolId = i;
         toolProps.style = {
           position: "absolute",
-          top: allTools[i].y,
-          left: allTools[i].x,
+          top: allTools[i].y - offSet.top,
+          left: allTools[i].x - offSet.left,
           fontWeight: allTools[i].bold ? "bold" : "normal",
           fontStyle: allTools[i].italic ? "italic" : "normal",
           textDecoration: allTools[i].underline ? "underline" : "",
@@ -131,8 +150,8 @@ const FormViewer = () => {
     );
   };
 
-  return (
-    <div>
+  const renderMobileView = () => {
+    return (
       <Media at="mobile">
         <Grid
           style={{ overflow: "auto" }}
@@ -143,44 +162,16 @@ const FormViewer = () => {
           <Grid.Column>
             <Grid.Row>
               <Segment secondary>
-                <Header as="h2">{formTitle}</Header>
-              </Segment>
-            </Grid.Row>
-            <Grid.Row width={10}>
-              <Segment
-                style={{
-                  position: "relative",
-                  height: 800,
-                  marginTop: 10,
-                  minWidth: 600,
-                }}
-              >
-                {toolState}
-                {error}
-              </Segment>
-            </Grid.Row>
-            <br />
-            <Button positive>Submit</Button>
-          </Grid.Column>
-        </Grid>
-      </Media>
-      <Media greaterThan="mobile">
-        <Grid
-          style={{ overflow: "auto" }}
-          textAlign="center"
-          padded
-          verticalAlign="middle"
-        >
-          <Grid.Column width={10}>
-            <Grid.Row>
-              <Segment secondary>
-                <Header as="h2">{formTitle}</Header>
+                <Header as="h2" textAlign="center">
+                  {formTitle}
+                </Header>
               </Segment>
             </Grid.Row>
             <Grid.Row>
               <Segment
                 style={{
                   position: "relative",
+                  // overflow: "auto",
                   height: 800,
                   marginTop: 10,
                   minWidth: 600,
@@ -192,12 +183,57 @@ const FormViewer = () => {
             </Grid.Row>
             <br />
             {renderSubmitButton()}
-            {/* <Button positive onClick={handleSubmit}>
-              Submit
-            </Button> */}
           </Grid.Column>
         </Grid>
       </Media>
+    );
+  };
+
+  const renderDesktopView = () => {
+    return (
+      <Media greaterThan="mobile">
+        <div>
+          <Grid
+            style={{ overflow: "auto" }}
+            textAlign="center"
+            padded
+            verticalAlign="middle"
+            container
+          >
+            <Grid.Column>
+              <Grid.Row>
+                <Segment secondary>
+                  <Header as="h2" textAlign="center">
+                    {formTitle}
+                  </Header>
+                </Segment>
+              </Grid.Row>
+              <Grid.Row>
+                <Segment
+                  style={{
+                    position: "relative",
+                    minHeight: 800,
+                    marginTop: 10,
+                    minWidth: 600,
+                  }}
+                >
+                  {toolState}
+                  {error}
+                </Segment>
+              </Grid.Row>
+              <br />
+              {renderSubmitButton()}
+            </Grid.Column>
+          </Grid>
+        </div>
+      </Media>
+    );
+  };
+
+  return (
+    <div>
+      {renderMobileView()}
+      {renderDesktopView()}
     </div>
   );
 };

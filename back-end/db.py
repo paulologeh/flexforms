@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 
 def get_db():
     db_client = MongoClient(os.environ["MONGO_CLIENT"])
+    # db_client = MongoClient("mongodb://127.0.0.1:27017")
     return db_client
 
 

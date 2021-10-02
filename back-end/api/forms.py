@@ -16,6 +16,7 @@ config = configparser.ConfigParser()
 config.read(config_path)
 logger = logging.getLogger(__name__)
 FRONT_END_URI = os.environ["FRONT_END_URI"]
+# FRONT_END_URI = "http://localhost:3000"
 
 
 class SavedForms(Resource):
