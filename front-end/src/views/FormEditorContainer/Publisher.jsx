@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Form, Modal, Message, Icon } from "semantic-ui-react";
 import { addNewForm } from "services";
+import { validEmail } from "utils";
 
 import { PUBLISHED } from "navigation/CONSTANTS";
 import { ToolStore } from "contexts/toolsContext";
@@ -59,7 +60,7 @@ export const Publisher = ({ publishing, openPublishing, closePublishing }) => {
       setLoading(false);
       return;
     }
-    if (!email) {
+    if (!email || !validEmail(email)) {
       console.log(email, "is invalid");
       setError("Invalid email");
       setLoading(false);

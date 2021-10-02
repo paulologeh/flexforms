@@ -6,3 +6,4 @@ export {
 } from "./toolEvents";
 
 export { sleep } from "./sleep";
+export { validEmail } from "./validEmail";
