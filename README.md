@@ -16,8 +16,8 @@
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+### Table of Contents
+
   <ol>
     <li><a href="#about-the-project">About The Project</a>
     <li><a href="#built-with">Built With</a></li>
@@ -28,7 +28,7 @@
     <li><a href="#license">License</a></li>
   </ol>
 
-## About The Project
+### About The Project
 
 ![[product-screenshot]](./productScreenshot.png)
 Flexforms is a flexible form builder which can be used to build any form of your choice in any way you like.
