@@ -1,11 +1,12 @@
 import React from "react";
 import { Menu, Dropdown, Image, Icon } from "semantic-ui-react";
+import { useHistory } from "react-router-dom";
+import { ROOT } from "navigation/CONSTANTS";
 import logo from "assets/images/FlexFormsLogoNoText.png";
 
 export const EditorMenuMobile = ({ toolBar, editorPanel, handlePublish }) => {
-  const handleClick = () => {
-    handlePublish(true);
-  };
+  const handleClick = () => handlePublish(true);
+  const history = useHistory();
 
   return (
     <Menu>
@@ -15,7 +16,7 @@ export const EditorMenuMobile = ({ toolBar, editorPanel, handlePublish }) => {
       <Menu.Item header>Form Editor</Menu.Item>
       <Dropdown item icon="sidebar" simple>
         <Dropdown.Menu>
-          <Dropdown.Item>Home</Dropdown.Item>
+          <Dropdown.Item onClick={() => history.push(ROOT)}>Home</Dropdown.Item>
           <Dropdown.Item>
             <Icon name="dropdown" />
             <span className="text">Templates</span>
@@ -50,9 +51,8 @@ export const EditorMenuMobile = ({ toolBar, editorPanel, handlePublish }) => {
 };
 
 export const EditorMenuDesktop = ({ handlePublish }) => {
-  const handleClick = () => {
-    handlePublish(true);
-  };
+  const handleClick = () => handlePublish(true);
+  const history = useHistory();
 
   return (
     <Menu secondary>
@@ -60,7 +60,7 @@ export const EditorMenuDesktop = ({ handlePublish }) => {
         <Image size="mini" src={logo} />
       </Menu.Item>
       <Menu.Item header>Form Editor</Menu.Item>
-      <Menu.Item as="a">
+      <Menu.Item as="a" onClick={() => history.push(ROOT)}>
         <Icon name="home" />
         Home
       </Menu.Item>
