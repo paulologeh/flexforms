@@ -1,5 +1,6 @@
 import axios from "axios";
-import { BACK_END_URI } from "./CONSTANTS";
+
+const BACK_END_URI = process.env.BACK_END_URI;
 
 export const addFormResponse = async (uuid, body) => {
   const response = await axios.post(
