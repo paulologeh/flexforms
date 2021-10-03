@@ -48,7 +48,7 @@ This project was built with the following tools:
 
 ## Getting Started
 
-<a href="https://flexforms-frontend.herokuapp.com/"><strong>Click here to go to the app</strong></a>
+<a href="https://flex-forms.herokuapp.com"><strong>Click here to go to the app</strong></a>
 
 ## Roadmap
 
