@@ -31,13 +31,10 @@ const FormResponse = () => {
   }, []);
 
   useEffect(() => {
-    console.log("data", data);
     let formKeys = getKeys(data);
     setHeaders(formKeys);
-    console.log("formKeys", formKeys);
     let formRows = getRowsData(data, formKeys);
     setRowData(formRows);
-    console.log("formRows", formRows);
   }, [data]);
 
   const getKeys = (data) => {

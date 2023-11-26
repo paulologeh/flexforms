@@ -49,25 +49,21 @@ export const Publisher = ({ publishing, openPublishing, closePublishing }) => {
 
     // Checks
     if (!name) {
-      console.log(name, "is invalid");
       setError("Invalid name");
       setLoading(false);
       return;
     }
     if (!title) {
-      console.log(title, "is invalid");
       setError("Invalid title");
       setLoading(false);
       return;
     }
     if (!email || !validEmail(email)) {
-      console.log(email, "is invalid");
       setError("Invalid email");
       setLoading(false);
       return;
     }
     if (!toolStore.allToolProps.length) {
-      console.log("Nothing to publish");
       setError("Nothing to publish");
       setLoading(false);
       return;

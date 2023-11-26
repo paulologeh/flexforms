@@ -27,9 +27,7 @@ export const EditorTool = ({
   };
 
   const handleKeys = (event) => {
-    console.debug(`Key Pressed ${event.keyCode}`);
     if (event.keyCode === 8 || event.keyCode === 46) {
-      console.log(`labelState is ${labelState}`);
       // callback label state, if in Input state do not delete
       if (labelState === "text") return;
       onToolDelete(toolId, toolStore, updateToolStore);

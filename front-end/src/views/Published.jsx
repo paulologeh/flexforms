@@ -8,7 +8,6 @@ const Published = () => {
   const [toolStore] = useContext(ToolStore);
   const history = useHistory();
 
-  console.log("Publish", toolStore);
 
   return (
     <Segment placeholder>

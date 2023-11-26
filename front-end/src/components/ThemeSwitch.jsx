@@ -9,7 +9,6 @@ export const ThemeSwitch = ({ darkState, handleThemeChange }) => {
         slider
         checked={darkState}
         onChange={handleThemeChange}
-        onClick={() => console.log("Btn clicked!")}
       ></Radio>
     </Segment>
   );

@@ -31,7 +31,6 @@ export const EditorPanel = ({ mobile }) => {
       (obj) => obj.key !== `${toolId}`
     );
     updateToolStore(oldToolStore);
-    console.debug(`deleted ${toolId} from store`);
   };
 
   const onRefresh = (event) => {
@@ -40,7 +39,6 @@ export const EditorPanel = ({ mobile }) => {
     oldToolStore.allToolProps = [];
     oldToolStore.allTools = [];
     updateToolStore(oldToolStore);
-    console.debug(`cleared the store`);
   };
 
   const onBold = (event) => {
@@ -54,7 +52,6 @@ export const EditorPanel = ({ mobile }) => {
         break;
       }
     }
-    console.debug(`${toolId} made bold`);
   };
 
   const onItalic = (event) => {
@@ -68,7 +65,6 @@ export const EditorPanel = ({ mobile }) => {
         break;
       }
     }
-    console.debug(`${toolId} made italic`);
   };
 
   const onUnderline = (event) => {
@@ -82,7 +78,6 @@ export const EditorPanel = ({ mobile }) => {
         break;
       }
     }
-    console.debug(`${toolId} made underlined`);
   };
 
   const onFontSizeChange = (event, data) => {
@@ -96,13 +91,11 @@ export const EditorPanel = ({ mobile }) => {
         break;
       }
     }
-    console.debug(`${toolId} made ${textSize}`);
   };
 
   const onUndo = () => {
     setUndo(true);
     if (past.length <= 1) {
-      console.debug("No past to undo");
       setUndo(false);
       return;
     }
@@ -121,7 +114,6 @@ export const EditorPanel = ({ mobile }) => {
   const onRedo = () => {
     setRedo(true);
     if (future.length < 1) {
-      console.debug("No future to redo");
       setRedo(false);
       return;
     }

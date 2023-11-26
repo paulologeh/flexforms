@@ -30,7 +30,6 @@ const FormViewer = () => {
   const [open, setOpen] = useState(false);
   const query = useQuery();
 
-  console.log("FormViewer", formStore);
 
   useEffect(() => {
     async function fetchForm() {
@@ -40,7 +39,6 @@ const FormViewer = () => {
       try {
         request = await getForm(uuid);
       } catch (e) {
-        console.log(request);
         setError("Failed to fetch form");
         return;
       }
@@ -56,7 +54,6 @@ const FormViewer = () => {
       };
 
       for (let i = 0; i < allTools.length; i++) {
-        console.log(allTools[i]);
         if (allTools[i].y < offSet.top) {
           offSet.top = allTools[i].y;
         }
@@ -119,7 +116,6 @@ const FormViewer = () => {
       const response = await addFormResponse(uuid, {
         data: formStore,
       });
-      console.debug("handleSubmit -->", response);
     } catch (e) {
       setError(e);
     }

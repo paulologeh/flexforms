@@ -24,7 +24,6 @@ const App = () => {
   const [darkState, setDarkState] = useState(false);
   const handleThemeChange = () => {
     setDarkState(!darkState);
-    console.debug("theme=", darkState ? "dark" : "light");
   };
 
   return (

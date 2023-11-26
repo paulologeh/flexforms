@@ -5,7 +5,6 @@ import { ToolStore } from "contexts/toolsContext";
 export const Canvas = ({ height = 800 }) => {
   const [toolStore] = useContext(ToolStore);
 
-  console.debug("Canvas: ", toolStore);
 
   return (
     <Segment

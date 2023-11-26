@@ -1,7 +1,6 @@
 import cloneDeep from "lodash/cloneDeep";
 
 export const onLabelEdit = (toolId, value, toolStore, updateToolStore) => {
-  console.log(`Changing label for tool id ${toolId} to ${value}`);
   let oldToolStore = cloneDeep(toolStore);
   for (let i = 0; oldToolStore.allToolProps.length; i++) {
     if (toolId === oldToolStore.allToolProps[i].toolId) {
@@ -13,7 +12,6 @@ export const onLabelEdit = (toolId, value, toolStore, updateToolStore) => {
 };
 
 export const onToolClick = (toolId, toolStore, updateToolStore) => {
-  console.debug("clicked ", toolId);
   let oldToolStore = cloneDeep(toolStore);
   oldToolStore.selectedTool = toolId;
   updateToolStore(oldToolStore);
@@ -26,7 +24,6 @@ export const onToolDragStop = (
   updateToolStore
 ) => {
   // Update X & Y position of the tool in the tool store
-  console.debug(toolId, `moved to X:${position.x} Y:${position.y}`);
   let oldToolStore = cloneDeep(toolStore);
   let allToolProps = oldToolStore.allToolProps;
   for (let i = 0; i < allToolProps.length; i++) {
@@ -50,5 +47,4 @@ export const onToolDelete = (toolId, toolStore, updateToolStore) => {
   );
 
   updateToolStore(oldToolStore);
-  console.debug(toolId, `deleted ${toolId} from store ${oldToolStore}`);
 };
