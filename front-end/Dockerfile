@@ -10,11 +10,7 @@ RUN yarn
 
 COPY public/ public
 COPY src/ src
-RUN yarn build
+RUN NODE_OPTIONS="--trace-warnings" yarn build --verbose
 
-FROM httpd:alpine as final
-WORKDIR /var/www/build
-COPY --from=build /build/build/ .
-
-# RUN yarn global add serve
-# CMD ["serve", "-s", "build"]
+RUN yarn global add serve
+CMD ["serve", "-s", "build"]
