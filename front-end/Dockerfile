@@ -10,7 +10,7 @@ RUN yarn
 
 COPY public/ public
 COPY src/ src
-RUN NODE_OPTIONS="--trace-warnings" yarn build --verbose
+RUN yarn build
 
 RUN yarn global add serve
 CMD ["serve", "-s", "build"]

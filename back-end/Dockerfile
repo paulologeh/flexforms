@@ -1,14 +1,16 @@
-# Use an official Python runtime as a parent image
 FROM python:3.9.18-alpine3.18
 
-# Set the working directory to /app
-WORKDIR /app
+WORKDIR /code
 
-# Copy the current directory contents into the container at /app
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+
+RUN apk add --no-cache gcc musl-dev linux-headers
+
+COPY requirements.txt requirements.txt
+
+RUN pip install -r requirements.txt
+
 COPY . .
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+CMD ["flask", "run"]
