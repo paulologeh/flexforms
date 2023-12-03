@@ -1,15 +1,11 @@
 import axios from "axios";
 
-const BACK_END_URI = process.env.REACT_APP_BACK_END_URI;
+const BACKEND_URL = process.env.BACKEND_URL;
 
 export const addNewForm = async (body) => {
-  const response = await axios.post(`${BACK_END_URI}/api/v1/savedforms`, body);
-  return response;
+  return await axios.post(`${BACKEND_URL}/api/v1/savedforms`, body);
 };
 
 export const getForm = async (uuid) => {
-  const response = await axios.get(
-    `${BACK_END_URI}/api/v1/savedforms?uuid=${uuid}`
-  );
-  return response;
+  return await axios.get(`${BACKEND_URL}/api/v1/savedforms?uuid=${uuid}`);
 };
