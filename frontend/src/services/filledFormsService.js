@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_URL = process.env.BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export const addFormResponse = async (uuid, body) => {
   return await axios.post(
