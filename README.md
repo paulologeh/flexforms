@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="#">
-    <img src="./front-end/public/favicons/android-chrome-192x192.png" alt="Logo" width="100" height="100">
+    <img src="./frontend/public/favicons/android-chrome-192x192.png" alt="Logo" width="100" height="100">
   </a>
 
   <h3 align="center">Flex-Forms</h3>
@@ -53,7 +53,7 @@ This project was built with the following tools:
 
 ## Roadmap
 
-See the [open issues](https://github.com/paulologeh/Flex-Forms/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/paulologeh/flexforms/issues) for a list of proposed features (and known issues).
 
 ## Contributing
 
