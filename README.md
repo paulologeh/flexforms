@@ -48,7 +48,7 @@ This project was built with the following tools:
 
 ## Getting Started
 
-<a href="https://flex-forms.herokuapp.com"><strong>Click here to go to the app</strong></a>
+<a href="http://app.flexforms.paullabs.cloud/"><strong>Click here to go to the app</strong></a>
 > Note: Please retry if you get an Application Error. The App needs sometime to be woken up by Heroku.
 
 ## Roadmap
