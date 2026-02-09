@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
-    "axios": "^1.6.2",
+    "axios": "^1.13.5",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "bootstrap": "^5.1.0",
     "dotenv": "^16.3.1",
